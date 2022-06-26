@@ -1,0 +1,105 @@
+{# templates/security/login.html.twig #}
+{# ... you will probably extend your base template, like base.html.twig #}
+{% extends 'baselogin.html.twig' %}
+
+	{% block body %}
+
+
+		<div class="sufee-login d-flex align-content-center flex-wrap"> <div class="container">
+			<div class="login-content">
+				<div class="login-logo">
+					<a href="https://lucette.market/">
+						<img class="align-content" style="70%;" src="{{asset('images/lucette.png')}}" alt="Lucette">
+					</a>
+				</div>
+				<div class="login-form"  style="border:2px solid;border-color:#99AAA5;border-radius:15px;background-color:#F3F3F3; width:100%;">
+					{% for message in app.flashes('danger') %}
+						<div class="sufee-alert alert with-close alert-danger alert-dismissible fade show" role="alert">
+							<span class="badge badge-pill badge-danger">Error</span>
+							{{ message }}
+							<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+					{% endfor %}
+					{{ form_start(form) }}
+					<div class="form-group">
+						{{ form_errors(form.first_name) }}
+						{{ form_label(form.first_name) }}
+						{{ form_widget(form.first_name, {'attr':{'class': 'form-control' }}) }}
+					</div>
+					<div class="form-group">
+						{{ form_errors(form.last_name) }}
+						{{ form_label(form.last_name) }}
+						{{ form_widget(form.last_name, {'attr':{'class': 'form-control' }}) }}
+					</div>
+					<div class="form-group">
+						{{ form_errors(form.email) }}
+						{{ form_label(form.email) }}
+						{{ form_widget(form.email, {'attr':{'class': 'form-control' }}) }}
+					</div>
+					<div class="form-group">
+						{{ form_errors(form.phoneNumber) }}
+						{{ form_label(form.phoneNumber) }}
+						{{ form_widget(form.phoneNumber, {'attr':{'class': 'form-control' }}) }}
+					</div>
+					<div class="form-group">
+						{{ form_errors(form.plainPassword.first) }}
+						{{ form_label(form.plainPassword.first) }}
+						{{ form_widget(form.plainPassword.first, {'attr':{'class': 'form-control'}}) }}
+					</div>
+					<div class="form-group">
+						{{ form_errors(form.plainPassword.second) }}
+						{{ form_label(form.plainPassword.second) }}
+						{{ form_widget(form.plainPassword.second, {'attr':{'class': 'form-control'}}) }}
+					</div>
+					<div class="form-group">
+						{{ form_errors(form.codeCompany) }}
+						{{ form_label(form.codeCompany) }}
+						{{ form_widget(form.codeCompany, {'attr':{'class': 'form-control'}}) }}
+					</div>
+					<div class="checkbox">
+						<br>
+						<p>
+							{{ form_errors(form.subscribe) }}
+							{{ form_widget(form.subscribe) }}
+							I agree to receive information on the availability of services</p>
+
+					</div>
+					<div class="checkbox">
+						{{ form_errors(form.termsAccepted) }}
+						{{ form_widget(form.termsAccepted) }}
+						I agree that my personal data will be used to contact me as part of the organization of my future cleaning services or for promotional offers.
+																		                            No other treatment will be done with my information.
+						<a href="https://lucette.market/politique-de-confidentialite">
+							<b>Read our privacy policy</b>
+						</a>
+						<br><br>
+						A mail will be send to your mailbox to confirm your inscription.
+					</div><br>
+					<button type="submit" class="btn btn-info btn-flat m-b-30 m-t-30">Register</button>
+					<div class="register-link m-t-15 text-center">
+						<p>Already have account ?
+							<a href="{{ path('login') }}">
+								Sign in</a>
+						</p>
+					</div>
+
+					<div>
+						<p class="text-center">* Mandatory fields</p>
+					</div>
+
+					{{ form_end(form) }}
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script src="{{asset('vendors/jquery/dist/jquery.min.js')}}"></script>
+	<script src="{{asset('vendors/popper.js/dist/umd/popper.min.js')}}"></script>
+	<script src="{{asset('vendors/bootstrap/dist/js/bootstrap.min.js')}}"></script>
+	<script src="{{asset('assets/js/main.js')}}"></script>
+
+
+{% endblock %}

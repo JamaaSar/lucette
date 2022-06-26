@@ -1,0 +1,174 @@
+{% extends 'layoutadmin.html.twig' %}
+
+{% block title %}Lucette
+{% endblock %}
+
+
+{% block content %}
+	<div class="breadcrumbs"></div>
+	<div class="content mt-3" style=" font-family: Calibri;">
+		<h3 style="text-align:center; ">Select your location
+		</h3>
+		<br>
+		<div class="col-md-12">
+			{% if app.user.verifyToken is not null %}
+				<div class="sufee-alert alert with-close alert-warning alert-dismissible fade show" role="alert">
+					<span class="badge badge-pill badge-warning">Warning</span>
+					As long as your account has not been verified, you can't book a service!
+					<a href="{{ path('wellness_email') }}">Send another verification email</a>
+				</div>
+			{% endif %}
+			{% for message in app.flashes('success') %}
+				<div class="sufee-alert alert with-close alert-success alert-dismissible fade show" role="alert">
+					<span class="badge badge-pill badge-success">Success</span>
+					{{ message }}
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+			{% endfor %}
+			{% for message in app.flashes('error') %}
+				<div class="sufee-alert alert with-close alert-danger alert-dismissible fade show" role="alert">
+					<span class="badge badge-pill badge-danger">Error</span>
+					{{ message }}
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+			{% endfor %}
+			<div class="gmap_unix card-body">
+				<div class="map" id="map" style="border-radius:7px; box-shadow: 5px 5px 5px 5px #cfcfcf;  width:100%;  height: 700px;"></div>
+			</div>
+		</div>
+	</div>
+</div>
+<script src="{{asset('vendors/jquery/dist/jquery.min.js')}}"></script>
+<script src="{{asset('vendors/popper.js/dist/umd/popper.min.js')}}"></script>
+<script src="{{asset('vendors/bootstrap/dist/js/bootstrap.min.js')}}"></script>
+<script src="{{asset('vendors/bootstrap/js/dist/collapse.js')}}"></script>
+<script src="{{asset('assets/js/main.js')}}"></script>
+<script src='{{asset('assets/js/jquery-1.10.2.js')}}' type="text/javascript"></script>
+<script src='{{asset('assets/js/jquery-ui.custom.min.js')}}' type="text/javascript"></script>
+<script src='{{asset('commandeCalendar/js/moment.min.js')}}'></script>
+
+<script>
+
+
+	jQuery(document).ready(function ($) {
+
+$("input[name='parking']").change(function () {
+$("#NextStep").prop("disabled", false)
+});
+
+$("input[name='parking']").change(function () {
+$("#next").prop("disabled", false);
+});
+
+
+});
+// Initialize and add the map
+
+// Add some markers to the map.
+// Note: The code uses the JavaScript Array.prototype.map() method to
+// create an array of markers based on a given "locations" array.
+// The map() method here has nothing to do with the Google Maps API.</script><script>
+
+var map;
+var Markers = {};
+var infowindow;
+var count = 0;
+var locations = [{% for key, res in avaible %}[
+'{{ res.parking.id }}',
+'<form action="   {{ path("hairsalon_availbleDate") }}" method="post">' + '<input type="hidden" name="catproduct_id" value="   {{ catproduct }}">' +  {% for option in options %}
+'<input type="hidden" name="val[]" value="   {{ option }}">' +
+{% endfor %}
+'<strong>    {{ res.parking.name }}' + '<br>' + '{{ res.parking.address }}{{ res.parking.zipcode }},    {{ res.parking.country }}' + '<br><br>' + '<a href="    {{ path("parking_detail", {'id': res.parking.id}) }}" style="color: green"target="_blank">' + 'Detail <i class="fa fa-eye"></i></a> </strong> <input type="hidden" name="parking" value="   {{ res.parking.id }}" id="parking">' + {% if achat == false %}
+'<button style="float: right; " type="submit" class="btn btn-success btn-btn-xs" id="parking" name="parking" value="   {{ res.parking.id }}" formaction="   {{ path("hairsalon_calendar") }}">Choose</button>'{% endif %}{% if achat == true %}'<button style="float: right;" type="submit" class="btn btn-success btn-btn-xs" id="parking" name="parking" value="   {{ res.parking.id }}">Choose</button>'{% endif %},
+
+'{{ res.parking.latitude }}',
+'{{ res.parking.longitude }}',
+count ++,{% if res.parking.company is not null %}
+"{{asset('uploads/logo/'~res.photo~'')}}"
+{% endif %}
+
+
+],{% endfor %}];
+
+
+function initialize() {
+
+
+var mylat;
+navigator.geolocation.getCurrentPosition(function (response) {
+
+var mylat = new google.maps.LatLng(response.coords.latitude, response.coords.longitude);
+console.log(mylat);
+
+
+});
+
+
+var mapOptions = {
+zoom: 11.5,
+center: mylat
+};
+
+map = new google.maps.Map(document.getElementById('map'), mapOptions);
+var bounds = new google.maps.LatLngBounds();
+
+infowindow = new google.maps.InfoWindow();
+
+
+for (i = 0; i < locations.length; i ++) {
+var lat = parseFloat(locations[i][2]);
+var long = parseFloat(locations[i][3]);
+var position = new google.maps.LatLng(lat, long);
+if (locations[i][5] === undefined) {
+var img = {
+url: "{{asset('uploads/iconmap/home.png')}}",
+
+scaledSize: new google.maps.Size(60, 60)
+
+}
+
+
+} else {
+var img = {
+url: locations[i][5],
+scaledSize: new google.maps.Size(75, 25)
+
+}
+}
+
+
+var marker = new google.maps.Marker({position: position, icon: img, map: map});
+console.log(locations[i][5]);
+
+
+google.maps.event.addListener(marker, 'click', (function (marker, i) {
+return function () {
+infowindow.setContent(locations[i][1]);
+infowindow.setOptions({maxWidth: 200});
+infowindow.open(map, marker);
+}
+})(marker, i));
+Markers[locations[i][4]] = marker;
+}
+
+locate(0);
+}
+
+function locate(marker_id) {
+var myMarker = Markers[marker_id];
+var markerPosition = myMarker.getPosition();
+map.panTo(markerPosition);
+google.maps.event.trigger(myMarker, 'click');
+
+
+}
+</script> 
+
+
+<script src="https://unpkg.com/@google/markerclustererplus@5.1.0/dist/markerclustererplus.min.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBaYtB6Dqw9i7vWLXQ_e5U0dzn2X1FWd3M&sensor=false&callback=initialize" type="text/javascript"></script>{% endblock %}
+

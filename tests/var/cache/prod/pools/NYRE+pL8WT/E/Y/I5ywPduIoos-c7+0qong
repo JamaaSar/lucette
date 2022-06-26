@@ -1,0 +1,172 @@
+<?php return [PHP_INT_MAX, static function () {
+
+    return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
+        $o = [
+            clone (($p = &\Symfony\Component\VarExporter\Internal\Registry::$prototypes)['Doctrine\\ORM\\Query\\ParserResult'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Query\\ParserResult')),
+            clone ($p['Doctrine\\ORM\\Query\\Exec\\SingleSelectExecutor'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Query\\Exec\\SingleSelectExecutor')),
+            clone ($p['Doctrine\\ORM\\Query\\ResultSetMapping'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Query\\ResultSetMapping')),
+        ],
+        null,
+        [
+            'Doctrine\\ORM\\Query\\ParserResult' => [
+                '_sqlExecutor' => [
+                    $o[1],
+                ],
+                '_resultSetMapping' => [
+                    $o[2],
+                ],
+                '_parameterMappings' => [
+                    [
+                        'currentdate' => [
+                            0,
+                        ],
+                        'product' => [
+                            1,
+                        ],
+                        'parking' => [
+                            2,
+                        ],
+                        'code' => [
+                            3,
+                        ],
+                    ],
+                ],
+            ],
+            'Doctrine\\ORM\\Query\\Exec\\AbstractSqlExecutor' => [
+                '_sqlStatements' => [
+                    1 => 'SELECT a0_.id AS id_0, a0_.date AS date_1, a0_.is_deleted AS is_deleted_2, a0_.debut AS debut_3, a0_.fin AS fin_4, a0_.affiche AS affiche_5, p1_.id AS id_6, p1_.name AS name_7, p1_.address AS address_8, p1_.tva AS tva_9, p1_.supprime AS supprime_10, p1_.address2 AS address2_11, p1_.postal_code AS postal_code_12, p1_.city AS city_13, p1_.country AS country_14, p2_.id AS id_15, p2_.name AS name_16, p2_.description AS description_17, p2_.supprime AS supprime_18, p2_.commission AS commission_19, p2_.direct_buy AS direct_buy_20, p2_.auto_valide AS auto_valide_21, p2_.photo AS photo_22, a0_.parking_id AS parking_id_23, a0_.provider_id AS provider_id_24, p2_.id_provider_id AS id_provider_id_25, p2_.category_service_id AS category_service_id_26 FROM availability a0_ LEFT JOIN parkings p3_ ON a0_.parking_id = p3_.id LEFT JOIN moovee_company m4_ ON p3_.company_id = m4_.id LEFT JOIN provider p1_ ON a0_.provider_id = p1_.id LEFT JOIN products p2_ ON p1_.id = p2_.id_provider_id WHERE a0_.date > ? AND a0_.is_deleted = 0 AND a0_.affiche = 1 AND p2_.supprime IS NULL AND p2_.id = ? AND p3_.id = ? AND (m4_.code_entreprise = ? OR p3_.company_id IS NULL) ORDER BY a0_.date DESC',
+                ],
+            ],
+            'stdClass' => [
+                'aliasMap' => [
+                    2 => [
+                        'a' => 'App\\Entity\\Availability',
+                        'provider' => 'App\\Entity\\Provider',
+                        'product' => 'App\\Entity\\Products',
+                    ],
+                ],
+                'relationMap' => [
+                    2 => [
+                        'provider' => 'provider',
+                        'product' => 'products',
+                    ],
+                ],
+                'parentAliasMap' => [
+                    2 => [
+                        'provider' => 'a',
+                        'product' => 'provider',
+                    ],
+                ],
+                'fieldMappings' => [
+                    2 => [
+                        'id_0' => 'id',
+                        'date_1' => 'date',
+                        'is_deleted_2' => 'is_deleted',
+                        'debut_3' => 'debut',
+                        'fin_4' => 'fin',
+                        'affiche_5' => 'affiche',
+                        'id_6' => 'id',
+                        'name_7' => 'name',
+                        'address_8' => 'address',
+                        'tva_9' => 'tva',
+                        'supprime_10' => 'supprime',
+                        'address2_11' => 'address2',
+                        'postal_code_12' => 'postal_code',
+                        'city_13' => 'city',
+                        'country_14' => 'country',
+                        'id_15' => 'id',
+                        'name_16' => 'name',
+                        'description_17' => 'description',
+                        'supprime_18' => 'supprime',
+                        'commission_19' => 'commission',
+                        'direct_buy_20' => 'directBuy',
+                        'auto_valide_21' => 'autoValide',
+                        'photo_22' => 'photo',
+                    ],
+                ],
+                'typeMappings' => [
+                    2 => [
+                        'parking_id_23' => 'integer',
+                        'provider_id_24' => 'integer',
+                        'id_provider_id_25' => 'integer',
+                        'category_service_id_26' => 'integer',
+                    ],
+                ],
+                'entityMappings' => [
+                    2 => [
+                        'a' => null,
+                    ],
+                ],
+                'metaMappings' => [
+                    2 => [
+                        'parking_id_23' => 'parking_id',
+                        'provider_id_24' => 'provider_id',
+                        'id_provider_id_25' => 'id_provider_id',
+                        'category_service_id_26' => 'category_service_id',
+                    ],
+                ],
+                'columnOwnerMap' => [
+                    2 => [
+                        'id_0' => 'a',
+                        'date_1' => 'a',
+                        'is_deleted_2' => 'a',
+                        'debut_3' => 'a',
+                        'fin_4' => 'a',
+                        'affiche_5' => 'a',
+                        'id_6' => 'provider',
+                        'name_7' => 'provider',
+                        'address_8' => 'provider',
+                        'tva_9' => 'provider',
+                        'supprime_10' => 'provider',
+                        'address2_11' => 'provider',
+                        'postal_code_12' => 'provider',
+                        'city_13' => 'provider',
+                        'country_14' => 'provider',
+                        'id_15' => 'product',
+                        'name_16' => 'product',
+                        'description_17' => 'product',
+                        'supprime_18' => 'product',
+                        'commission_19' => 'product',
+                        'direct_buy_20' => 'product',
+                        'auto_valide_21' => 'product',
+                        'photo_22' => 'product',
+                        'parking_id_23' => 'a',
+                        'provider_id_24' => 'a',
+                        'id_provider_id_25' => 'product',
+                        'category_service_id_26' => 'product',
+                    ],
+                ],
+                'declaringClasses' => [
+                    2 => [
+                        'id_0' => 'App\\Entity\\Availability',
+                        'date_1' => 'App\\Entity\\Availability',
+                        'is_deleted_2' => 'App\\Entity\\Availability',
+                        'debut_3' => 'App\\Entity\\Availability',
+                        'fin_4' => 'App\\Entity\\Availability',
+                        'affiche_5' => 'App\\Entity\\Availability',
+                        'id_6' => 'App\\Entity\\Provider',
+                        'name_7' => 'App\\Entity\\Provider',
+                        'address_8' => 'App\\Entity\\Provider',
+                        'tva_9' => 'App\\Entity\\Provider',
+                        'supprime_10' => 'App\\Entity\\Provider',
+                        'address2_11' => 'App\\Entity\\Provider',
+                        'postal_code_12' => 'App\\Entity\\Provider',
+                        'city_13' => 'App\\Entity\\Provider',
+                        'country_14' => 'App\\Entity\\Provider',
+                        'id_15' => 'App\\Entity\\Products',
+                        'name_16' => 'App\\Entity\\Products',
+                        'description_17' => 'App\\Entity\\Products',
+                        'supprime_18' => 'App\\Entity\\Products',
+                        'commission_19' => 'App\\Entity\\Products',
+                        'direct_buy_20' => 'App\\Entity\\Products',
+                        'auto_valide_21' => 'App\\Entity\\Products',
+                        'photo_22' => 'App\\Entity\\Products',
+                    ],
+                ],
+            ],
+        ],
+        $o[0],
+        []
+    );
+
+}];

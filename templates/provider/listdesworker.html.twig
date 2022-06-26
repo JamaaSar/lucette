@@ -1,0 +1,117 @@
+{% extends 'layoutadmin.html.twig' %}
+
+{% block title %}Lucette
+{% endblock %}
+
+{% block content %}
+	<div class="breadcrumbs">
+		<div class="col-sm-4">
+			<div class="page-header float-left"></div>
+		</div>
+		<div class="col-sm-8">
+			<div class="page-header float-right">
+				<div class="page-title">
+					<ol class="breadcrumb text-right">
+						<li>
+							<a href="{{ path("cms_dashboard") }}">Dashboard</a>
+						</li>
+						<li>
+							<a href="{{ path("provider_list") }}">Provider</a>
+						</li>
+						<li>
+							<a href="{{ path("provider_edit", {'id': provider.id}) }}">Add new worker to
+								{{ provider.name }}</a>
+						</li>
+						<li class="active">Add worker
+						</li>
+					</ol>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="content mt-3">
+		<div class="animated fadeIn">
+			<div class="row">
+
+				<div class="col-md-12">
+					<div class="card">
+
+						<div class="card-body">
+							<div class="tile col-lg-4">
+								{% for message in app.flashes('danger') %}
+									<div class="sufee-alert alert with-close alert-danger alert-dismissible fade show" role="alert">
+										<span class="badge badge-pill badge-danger">Warning</span>
+										{{ message }}
+										<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+											<span aria-hidden="true">&times;</span>
+										</button>
+									</div>
+								{% endfor %}
+								{% for message in app.flashes('success') %}
+									<div class="sufee-alert alert with-close alert-success alert-dismissible fade show" role="alert">
+										<span class="badge badge-pill badge-success">Success</span>
+										{{ message }}
+										<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+											<span aria-hidden="true">&times;</span>
+										</button>
+									</div>
+								{% endfor %}
+								<table id="bootstrap-data-table-export" class="table table-striped bordered">
+									<thead style="background-color: #85A6B8; color: white;">
+										<tr>
+											<th>First name</th>
+											<th>Last name</th>
+											<th>Email</th>
+											<th>Phone number</th>
+											<th>Company code</th>
+											<th>Provider</th>
+											<th>Role</th>
+											<th></th>
+										</tr>
+									</thead>
+									<tbody>
+										{% for client in clients %}
+											<tr>
+												<td>{{ client.firstName }}</td>
+												<td>{{ client.lastName }}</td>
+												<td>{{ client.email }}</td>
+												<td>{{ client.phoneNumber }}</td>
+												<td>{{ client.codeCompany }}</td>
+												<td>
+													{{ client.provider ? client.provider.name : "" }}</td>
+												<td>
+													{% for item in client.roles %}
+														{{ item }}
+													{% endfor %}
+												</td>
+												<td>
+													<form method="POST">
+														<input type="hidden" name="user_id" value="{{ client.id }}">
+														<button type="submit" class="btn btn-info">Add to
+															{{provider.name}}</button>
+													</form>
+
+												</td>
+											</tr>
+										{% endfor %}
+									</tbody>
+
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- .animated -->
+	</div>
+	<!-- .content -->
+
+	<script src="../../../vendors/jquery/dist/jquery.min.js"></script>
+	<script src="../../../vendors/popper.js/dist/umd/popper.min.js"></script>
+	<script src="../../../vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script src="../../../assets/js/main.js"></script>
+
+
+
+{% endblock %}

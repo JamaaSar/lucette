@@ -1,0 +1,220 @@
+{% extends 'layoutadmin.html.twig' %}
+
+{% block title %}Lucette
+{% endblock %}
+
+
+{% block content %}
+	<script src="https://js.stripe.com/v3/"></script>
+	<div class="breadcrumbs"></div>
+	<div class="content mt-3" style=" font-family: Calibri;">
+		<div class="col-md-12">
+			{% if app.user.verifyToken is not null %}
+				<div class="sufee-alert alert with-close alert-warning alert-dismissible fade show" role="alert">
+					<span class="badge badge-pill badge-warning">Warning</span>
+					As long as your account has not been verified, you can't book a service!
+					<a href="{{ path('wellness_email') }}">Send another verification email</a>
+				</div>
+			{% endif %}
+			{% for message in app.flashes('success') %}
+				<div class="sufee-alert alert with-close alert-success alert-dismissible fade show" role="alert">
+					<span class="badge badge-pill badge-success">Success</span>
+					{{ message }}
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+			{% endfor %}
+			{% for message in app.flashes('error') %}
+				<div class="sufee-alert alert with-close alert-danger alert-dismissible fade show" role="alert">
+					<span class="badge badge-pill badge-danger">Error</span>
+					{{ message }}
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+			{% endfor %}
+			<form id="jsform" name='myform' method="post" action=" {{path('carservice_resume')}}">
+				<input type="hidden" name="product" value="{{ product }}">
+				<input type="hidden" name="carid" value="{{ carId }}">
+				{% for option in options %}
+					<input type="hidden" id="options" name="options" value="{{option}}">
+				{% endfor %}
+			</form>
+			<div style="margin-left:auto; margin-right:auto; margin-bottom:-100px;">
+
+				<div class="header">
+					<h3 style="text-align:center;">
+						Choose a date
+					</h3>
+				</div>
+				<br>
+				<div class="card" style="background-color:transparent;border:none; ">
+
+					<div class="card-body" style="margin-left:auto; margin-right:auto; ">
+						<br>
+						<div id='calendar1' class='calendar col-md-6' style='width:650px;'></div>
+						<div id='calendar2' class='calendar col-md-6' style='width:500px;'></div>
+					</div>
+				</div>
+			</div> 
+		</div>
+	</div>
+	<link href='{{asset('commandeCalendar/css/fullcalendar.css')}}' rel='stylesheet'/>
+	<script src="{{asset('vendors/jquery/dist/jquery.min.js')}}"></script>
+	<script src="{{asset('vendors/popper.js/dist/umd/popper.min.js')}}"></script>
+	<script src="{{asset('vendors/bootstrap/dist/js/bootstrap.min.js')}}"></script>
+	<script src="{{asset('vendors/bootstrap/js/dist/collapse.js')}}"></script>
+	<script src="{{asset('assets/js/main.js')}}"></script>
+	<script src='{{asset('assets/js/jquery-1.10.2.js')}}' type="text/javascript"></script>
+	<script src='{{asset('assets/js/jquery-ui.custom.min.js')}}' type="text/javascript"></script>
+	<script src='{{asset('commandeCalendar/js/moment.min.js')}}'></script>
+	<script src='{{asset('commandeCalendar/js/jquery.min.js')}}'></script>
+	<script src='{{asset('commandeCalendar/js/fullcalendar.js')}}'></script>
+
+	<script>
+		$(function () {
+showTodaysDate();
+initializeCalendar();
+getCalendars();
+initializeRightCalendar();
+initializeLeftCalendar();
+});
+
+/* --------------------------initialize calendar-------------------------- */
+var initializeCalendar = function () {
+$(".calendar").fullCalendar({
+
+editable: false,
+height: 400,
+firstDay: 1,
+timezone: 'local',
+timeFormat: 'H(:mm)a',
+axisFormat: 'H:mm',
+views: {
+agendaDay: {
+minTime: '05:00',
+maxTime: '22:00'
+}
+}
+
+})
+};
+
+/*--------------------------calendar variables--------------------------*/
+var getCalendars = function () {
+$cal = $(".calendar");
+$cal1 = $("#calendar1");
+$cal2 = $("#calendar2");
+};
+
+/* -------------------manage cal2 (right)------------------- */
+var previousClickedEvent = false;
+
+
+var initializeRightCalendar = function () {
+$cal2.fullCalendar("changeView", "agendaDay");
+$cal2.fullCalendar('addEventSource', {
+
+
+events: [{% for event in res %}{% for s in event %}{% for a in s %}{
+id:  "{{ event.0.parking.id }}&id=       {{ event.0.id }}",
+title: "Available",
+
+start: new Date("{{ event.0.date|date('Y-m-d') }}T{{ a.start}}"),
+end: new Date("{{ event.0.date|date('Y-m-d') }}T{{ a.end }}"),
+allDay: false,
+
+
+},{% endfor %}{% endfor %}	{% endfor %}]
+
+});
+$cal2.fullCalendar("option", {
+contentHeight: "auto",
+
+slotEventOverlap: false,
+allDaySlot: false,
+header: {
+right: "prev,next today"
+},
+eventClick: function (event, calEvent, view) {
+var date = event.start.format('DD/MM/YYYY');
+var stime = event.start.format('h:mm a');
+var etime = event.end.format('h:mm a');
+
+var decision = confirm("You choosed a date of " + date + " from " + stime + " to " + etime + "\n Are you sure to choose this slot?");
+
+if (decision == true) {
+
+var queryString = $('#jsform').serialize();
+var myurl = "{{asset('calendar/resume')}}" + "?date=" + date + "&start=" + stime + "&end=" + etime + "&" + queryString + "&parking=" + event.id;
+window.open(myurl, '_self');
+return false;
+}
+},
+
+selectable: true,
+selectHelper: true,
+select: function (start, end) {
+newEvent(start);
+}
+
+});
+};
+/* -------------------manage cal1 (left) ------------------- */
+var initializeLeftCalendar = function () {
+$cal1.fullCalendar('addEventSource', {
+
+events: [{% for avaibility in availabilities %}{
+title: "Available",
+start: new Date("{{ avaibility.date|date('Y-m-d') }}"),
+allDay: true,
+color: '#30c794ff',
+rendering: 'background'
+
+
+},{% endfor %}]
+});
+$cal1.fullCalendar("option", {
+contentHeight: "auto",
+
+header: {
+left: "prev,next today",
+center: "title",
+right: "month,agendaWeek"
+
+
+},
+dayClick: function (date, jsEvent, view) {
+cal2GoTo(date);
+},
+eventClick: function (calEvent) {
+cal2GoTo(calEvent.start);
+}
+});
+};
+
+/* -------------------moves right pane to date------------------- */
+var cal2GoTo = function (date) {
+$cal2.fullCalendar("gotoDate", date);
+};
+/* --------------------------load date in navbar-------------------------- */
+var showTodaysDate = function () {
+n = new Date();
+y = n.getFullYear();
+m = n.getMonth() + 1;
+d = n.getDate();
+$("#todaysDate").html("Today is " + m + "/" + d + "/" + y);
+};
+
+/* full calendar gives newly created given different ids in month/week view
+	and day view. create/edit event in day (right) view, so correct for
+	id change to update in month/week (left)
+	*/
+var getCal1Id = function (cal2Id) {
+var num = cal2Id.replace("_fc", "") - 1;
+var id = "_fc" + num;
+return id;
+};
+	</script>
+{% endblock %}

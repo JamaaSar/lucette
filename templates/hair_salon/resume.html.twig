@@ -1,0 +1,273 @@
+{% extends 'layoutadmin.html.twig' %}
+
+{% block title %}Lucette
+{% endblock %}
+
+{% block content %}
+	<script src="https://js.stripe.com/v3/"></script>
+	<style>
+		.StripeElement {
+			box-sizing: border-box;
+
+			height: 40px;
+
+			padding: 10px 12px;
+
+			border: 1px solid transparent;
+			border-radius: 4px;
+			background-color: white;
+
+			box-shadow: 0 1px 3px 0 #e6ebf1;
+			-webkit-transition: box-shadow 150ms ease;
+			transition: box-shadow 150ms ease;
+		}
+
+		.StripeElement--focus {
+			box-shadow: 0 1px 3px 0 #cfd7df;
+		}
+
+		.StripeElement--invalid {
+			border-color: #fa755a;
+		}
+
+		.StripeElement--webkit-autofill {
+			background-color: #fefde5 !important;
+		}
+	</style>
+	<div class="content mt-3" style=" font-family: Calibri;">
+		<div class="col-md-12">
+			<div class='header'>
+				<h4 style="text-align:center; ">Order summary
+				</h4>
+			</div>
+			{% if app.user.verifyToken is not null %}
+				<div class="sufee-alert alert with-close alert-warning alert-dismissible fade show" role="alert">
+					<span class="badge badge-pill badge-warning">Warning</span>
+					As long as your account has not been verified, you can't book a service!
+					<a href="{{ path('wellness_email') }}">Send another verification email</a>
+				</div>
+			{% endif %}
+			{% for message in app.flashes('success') %}
+				<div class="sufee-alert alert with-close alert-success alert-dismissible fade show" role="alert">
+					<span class="badge badge-pill badge-success">Success</span>
+					{{ message }}
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+			{% endfor %}
+			{% for message in app.flashes('error') %}
+				<div class="sufee-alert alert with-close alert-danger alert-dismissible fade show" role="alert">
+					<span class="badge badge-pill badge-danger">Error</span>
+					{{ message }}
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+			{% endfor %}
+			<form id="payment-form" action="{{ path('hairsalon_payment') }}" method="post">
+				<br>
+				<div class="tile col-lg-12">
+					<div class="row">
+						<div class="col-md-6">
+							<div class="card" style="border-radius:10px; box-shadow: 5px 5px 5px 5px #cfcfcf; ">
+								<div class="card-header">
+									<strong class="card-title ">Product & Options</strong>
+								</div>
+								<div class="card-body" style="min-height: 100px">
+									<p class="card-text ">
+										<b class="product-title">
+											{{product.name}}</b>
+									</p>
+									{% for option in options %}
+										<p id="list-option" class="card-text ">{{option.name}}</p>
+									{% endfor %}
+								</div>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="card" style="border-radius:10px; box-shadow: 5px 5px 5px 5px #cfcfcf; ">
+								<div class="card-header">
+									<strong class="card-title ">Location :
+										{{parking.name}}</strong>
+								</div>
+								<div class="card-body" style="height: 100px">
+									<p class="card-text ">
+										{{parking.address}}
+										<br>
+										{{parking.zipcode}}
+										{{parking.city}}
+									</p>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-2">
+							<div class="card" style="border-radius:10px; box-shadow: 5px 5px 5px 5px #cfcfcf; ">
+								<div class="card-header">
+									<strong class="card-title">Date</strong>
+								</div>
+								<div class="card-body" style="height: 100px">
+									<p>{{date}}
+										<br>
+										{{start}}
+										-
+									{{end}}
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col">
+						<table id="bootstrap-data-table-export" class="table borderedStyle">
+							<thead style="background-color: #85A6B8; color: white;">
+								<tr>
+									<th>Name</th>
+									<th>Price</th>
+									<th>Time</th>
+								</tr>
+							</thead>
+							{% set minuteTotal = 0 %}
+							<tbody id="resume">
+								<tr>
+									<td>{{categoryProduct.idproduct.name}}</td>
+									<td>{{categoryProduct.price}}€</td>
+									<td style="font-style: italic;">{{categoryProduct.time}}
+										min</td>
+									{% set minuteTotal = minuteTotal + categoryProduct.time %}
+								</tr>
+								{% for catop in categoryOption %}
+									<tr>
+										<input id="{{catop.id }}" name="options[]" type="hidden" value=" {{catop.id}} ">
+										<td>{{catop.idoption.name}}</td>
+										<td>{{catop.price}}€</td>
+										<td style="font-style: italic;">{{catop.time}}
+											min
+										</td>
+										{% set minuteTotal = minuteTotal + catop.time %}
+									</tr>
+								{% endfor %}
+								<tr>
+									<td>VAT (Included):</td>
+									<td>{{vat}}€</td>
+								</tr>
+								<tr>
+									<td style="background-color: #85A6B8; color: white;">Total:</td>
+									<td style="background-color: #85A6B8; color: white;">{{priceTotal}}€</td>
+									<td style="background-color: #85A6B8; color: white;  font-style: italic;">{{minuteTotal}}
+										min</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<br><br>
+				<div>
+					{% if categoryProduct.idproduct.directbuy == 0 %}
+
+						<label for="discount" style="margin-right: 5px">Discount code</label>
+						<input id="discount" type="text" name="discount" value="" style='border-radius:10px;'>
+						<label id="after_validate"></label><br>
+						<input id="btn_discount" type="button" value="Validate" class="btn btn-info">
+						<input id="validate_discount" name="validate_discount" type="hidden" value="">
+					{% else %}
+						<label for="discountDirect" style="margin-right: 5px">Discount code
+						</label>
+						<input id="discountDirect" type="text" name="discountDirect" value="" style='border-radius:10px;'>
+						<label id="after_validate"></label><br>
+						<input id="btn_discountDirect" type="button" value="Validate" class="btn btn-info">
+						<input id="validate_discount" name="validate_discount" type="hidden" value="">
+					{% endif %}
+					<br><br><br>
+				</div>
+				<div>
+					<div class="col-md-12">
+						<label for="CGU" style="margin-right: 5px">I have read the
+							<a href="https://lucette.market/cgv/" target="_blank">
+								<b>CGV/CGU</b>
+							</a>
+						</label>
+						<input id="CGU" type="checkbox" name="CGU" required>
+						<br>
+						<input id="availability" name="availability" type="hidden" value="{{ availability.id}}">
+						<input id="product_id" name="product_id" type="hidden" value="{{categoryProduct.id}}">
+						<input id="parkingId" name="parkingId" type="hidden" value="{{parking.id}}">
+						<input id="start" name="start" type="hidden" value="{{start}}">
+						<input id="end" name="end" type="hidden" value="{{end}}">
+						<a href="{{ path("hairsalon_hair_salon") }}" class="btn btn-danger">Cancel</a>
+						<input type="Submit" value="Proceed To Payment" id="NextStep3" class="btn btn-info">
+						<br>
+						<br>
+					</div>
+				</div>
+			</form>
+		</div>
+		<!-- .animated -->
+	</div><!-- .content --></div></div></div>
+	<script src="{{asset('vendors/jquery/dist/jquery.min.js')}}"></script>
+	<script src="{{asset('vendors/popper.js/dist/umd/popper.min.js')}}"></script>
+	<script src="{{asset('vendors/bootstrap/dist/js/bootstrap.min.js')}}"></script>
+	<script src="{{asset('vendors/bootstrap/js/dist/collapse.js')}}"></script>
+	<script src="{{asset('assets/js/main.js')}}"></script>
+	<script src='{{asset('assets/js/jquery-1.10.2.js')}}' type="text/javascript"></script>
+	<script src='{{asset('assets/js/jquery-ui.custom.min.js')}}' type="text/javascript"></script>
+	<script>
+
+	$(document).on('click', '#btn_discount', function () { // console.log('ok');
+
+if ($("#discount").val() != "") {
+var reduc = $("#discount").val();
+// console.log("pas null");
+// console.log($("#discount").val());
+} else { // console.log("null");
+var reduc = " ";
+}
+$.ajax({
+url: '{{path('hairsalon_resume')}}',
+type: "POST",
+dataType: "json",
+data: {
+"reduction": reduc
+},
+async: true,
+success: function (data) {
+$("#after_validate").html(data.verify);
+$("#validate_discount").val(data.code);
+
+
+// console.log(data);
+
+
+}
+});
+});
+$(document).on('click', '#btn_discountDirect', function () { // console.log('ok');
+
+if ($("#discountDirect").val() != "") {
+var reduc = $("#discountDirect").val();
+// console.log("pas null");
+// console.log($("#discount").val());
+} else { // console.log("null");
+var reduc = " ";
+}
+$.ajax({
+url: '{{path('hairsalon_resumedirect')}}',
+type: "POST",
+dataType: "json",
+data: {
+"reduction": reduc
+},
+async: true,
+success: function (data) {
+$("#after_validate").html(data.verify);
+$("#validate_discount").val(data.code);
+
+
+// console.log(data);
+
+
+}
+});
+
+
+});</script>{% endblock %}

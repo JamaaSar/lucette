@@ -1,0 +1,158 @@
+<?php return [PHP_INT_MAX, static function () {
+
+    return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
+        $o = [
+            clone (($p = &\Symfony\Component\VarExporter\Internal\Registry::$prototypes)['Doctrine\\ORM\\Mapping\\ClassMetadata'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\ClassMetadata')),
+            clone ($p['Doctrine\\ORM\\Id\\IdentityGenerator'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Id\\IdentityGenerator')),
+        ],
+        null,
+        [
+            'stdClass' => [
+                'name' => [
+                    'App\\Entity\\PlannedCleaningOptions',
+                ],
+                'namespace' => [
+                    'App\\Entity',
+                ],
+                'rootEntityName' => [
+                    'App\\Entity\\PlannedCleaningOptions',
+                ],
+                'customRepositoryClassName' => [
+                    'App\\Repository\\PlannedCleaningOptionsRepository',
+                ],
+                'identifier' => [
+                    [
+                        'id',
+                    ],
+                ],
+                'generatorType' => [
+                    4,
+                ],
+                'fieldMappings' => [
+                    [
+                        'id' => [
+                            'fieldName' => 'id',
+                            'type' => 'integer',
+                            'scale' => 0,
+                            'length' => null,
+                            'unique' => false,
+                            'nullable' => false,
+                            'precision' => 0,
+                            'id' => true,
+                            'columnName' => 'id',
+                        ],
+                        'price_paid' => [
+                            'fieldName' => 'price_paid',
+                            'type' => 'float',
+                            'scale' => 0,
+                            'length' => null,
+                            'unique' => false,
+                            'nullable' => false,
+                            'precision' => 0,
+                            'columnName' => 'price_paid',
+                        ],
+                    ],
+                ],
+                'fieldNames' => [
+                    [
+                        'id' => 'id',
+                        'price_paid' => 'price_paid',
+                    ],
+                ],
+                'columnNames' => [
+                    [
+                        'id' => 'id',
+                        'price_paid' => 'price_paid',
+                    ],
+                ],
+                'table' => [
+                    [
+                        'name' => 'planned_cleaning_options',
+                    ],
+                ],
+                'associationMappings' => [
+                    [
+                        'planned_cleaning_id' => [
+                            'fieldName' => 'planned_cleaning_id',
+                            'joinColumns' => [
+                                [
+                                    'name' => 'planned_cleaning_id_id',
+                                    'unique' => false,
+                                    'nullable' => false,
+                                    'onDelete' => null,
+                                    'columnDefinition' => null,
+                                    'referencedColumnName' => 'id',
+                                ],
+                            ],
+                            'cascade' => [],
+                            'inversedBy' => 'plannedCleaningOptions',
+                            'targetEntity' => 'App\\Entity\\PlannedCleaning',
+                            'fetch' => 2,
+                            'type' => 2,
+                            'mappedBy' => null,
+                            'isOwningSide' => true,
+                            'sourceEntity' => 'App\\Entity\\PlannedCleaningOptions',
+                            'isCascadeRemove' => false,
+                            'isCascadePersist' => false,
+                            'isCascadeRefresh' => false,
+                            'isCascadeMerge' => false,
+                            'isCascadeDetach' => false,
+                            'sourceToTargetKeyColumns' => [
+                                'planned_cleaning_id_id' => 'id',
+                            ],
+                            'joinColumnFieldNames' => [
+                                'planned_cleaning_id_id' => 'planned_cleaning_id_id',
+                            ],
+                            'targetToSourceKeyColumns' => [
+                                'id' => 'planned_cleaning_id_id',
+                            ],
+                            'orphanRemoval' => false,
+                        ],
+                        'option_id' => [
+                            'fieldName' => 'option_id',
+                            'joinColumns' => [
+                                [
+                                    'name' => 'option_id_id',
+                                    'unique' => false,
+                                    'nullable' => false,
+                                    'onDelete' => null,
+                                    'columnDefinition' => null,
+                                    'referencedColumnName' => 'id',
+                                ],
+                            ],
+                            'cascade' => [],
+                            'inversedBy' => 'plannedCleaningOptions',
+                            'targetEntity' => 'App\\Entity\\Option',
+                            'fetch' => 2,
+                            'type' => 2,
+                            'mappedBy' => null,
+                            'isOwningSide' => true,
+                            'sourceEntity' => 'App\\Entity\\PlannedCleaningOptions',
+                            'isCascadeRemove' => false,
+                            'isCascadePersist' => false,
+                            'isCascadeRefresh' => false,
+                            'isCascadeMerge' => false,
+                            'isCascadeDetach' => false,
+                            'sourceToTargetKeyColumns' => [
+                                'option_id_id' => 'id',
+                            ],
+                            'joinColumnFieldNames' => [
+                                'option_id_id' => 'option_id_id',
+                            ],
+                            'targetToSourceKeyColumns' => [
+                                'id' => 'option_id_id',
+                            ],
+                            'orphanRemoval' => false,
+                        ],
+                    ],
+                ],
+                'idGenerator' => [
+                    $o[1],
+                ],
+            ],
+        ],
+        $o[0],
+        []
+    );
+
+}];

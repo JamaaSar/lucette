@@ -1,0 +1,182 @@
+{% extends 'layoutadmin.html.twig' %}
+
+{% block title %}Lucette
+{% endblock %}
+
+{% block content %}
+	<div class="breadcrumbs">
+		<div class="col-sm-4">
+			<div class="page-header float-left"></div>
+		</div>
+		<div class="col-sm-8">
+			<div class="page-header float-right">
+				<div class="page-title">
+					<ol class="breadcrumb text-right">
+						<li>
+							<a href="{{ path("cms_dashboard") }}">Dashboard</a>
+						</li>
+						<li>
+							<a href="{{ path("parking_list") }}">Parking</a>
+						</li>
+						<li class="active">Availability</li>
+					</ol>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="content mt-3">
+		<div class="animated fadeIn">
+			<div class="row">
+
+
+				<div class="col-md-5">
+					<div class="card">
+						<div class="card-header">
+							<strong class="card-title">Add Availability</strong>
+						</div>
+						<div class="card-body">
+							<div class="tile col-lg-4">
+
+								{{ form_start(form) }}
+								<div class="form-group" style="display: none">
+									{{ form_errors(form.parking) }}
+									{{ form_label(form.parking) }}
+
+									{{ form_widget(form.parking, {'attr':{'class': 'form-control'  }}) }}
+
+								</div>
+
+
+								{% if is_granted('ROLE_ADMIN') %}
+									<div class="form-group">
+										{{ form_errors(form.provider) }}
+										{{ form_label(form.provider) }}
+										{{ form_widget(form.provider, {'attr':{'class': 'form-control'  }}) }}
+									</div>
+								{% else %}
+									<div class="form-group" style="display: none">
+										{{ form_errors(form.provider) }}
+										{{ form_label(form.provider) }}
+										{{ form_widget(form.provider, {'attr':{'class': 'form-control'  }}) }}
+									</div>
+								{% endif %}
+
+
+								<div class="form-group">
+									{{ form_errors(form.from) }}
+									{{ form_label(form.from) }}
+									{{ form_widget(form.from, {'attr':{'class': 'form-control'  }}) }}
+								</div>
+								<div class="form-group">
+									{{ form_errors(form.to) }}
+									{{ form_label(form.to) }}
+									{{ form_widget(form.to, {'attr':{'class': 'form-control'  }}) }}
+								</div>
+								<div class="form-group">
+									{{ form_errors(form.date) }}
+									{{ form_label(form.date ) }}
+									{{ form_widget(form.date, {'attr':{'class': 'form-control'  }}) }}
+								</div>
+
+
+								<button type="submit" class="btn btn-info">Add</button>
+								<a href="{{ path("parking_list") }}" class="btn btn-danger">Return</a>
+
+								{{ form_end(form) }}
+
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-7">
+					<div class="card">
+						<div class="card-header">
+							<strong class="card-title">{{ parking.name }}</strong>
+						</div>
+
+						<div class="card-body">
+
+							{% for message in app.flashes('success') %}
+								<div class="sufee-alert alert with-close alert-success alert-dismissible fade show" role="alert">
+									<span class="badge badge-pill badge-success">Success</span>
+									{{ message }}
+									<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									</button>
+								</div>
+							{% endfor %}
+							{% for message in app.flashes('alert-warning') %}
+								<div class="sufee-alert alert with-close alert-warning alert-dismissible fade show" role="alert">
+									<span class="badge badge-pill badge-warning">Warning</span>
+									{{ message }}
+									<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									</button>
+
+								</div>
+							{% endfor %}
+
+							<table id="bootstrap-data-table-export" class="table table-striped bordered">
+								<thead style="background-color: #85A6B8; color: white;">
+									<tr>
+										{% if is_granted('ROLE_ADMIN') %}
+											<th>Provider</th>
+										{% endif %}
+										<th>Date</th>
+										<th>From</th>
+										<th>To</th>
+										<th></th>
+									</tr>
+								</thead>
+								<tbody>
+									{% for availability in availabilities %}
+										<tr>
+											{% if is_granted('ROLE_ADMIN') %}
+												<td>{{ availability.provider }}</td>
+											{% endif %}
+											<td>{{ availability.date|date('d-m-Y') }}</td>
+											<td>{{ availability.debut }}</td>
+											<td>{{ availability.fin }}</td>
+											<td>
+												{% if availability.affiche != 1 %}
+													<a onclick="return confirm('Do you really want to show this availability? You will not be able to edit it anymore.')" href="{{ path("parking_availability_show", {'idAvailability': availability.id, 'id': parking.id}) }}" class="btn btn-success btn-sm ">
+														<i class="fa fa-check mr-0"></i>
+													</a>
+													<a href="{{ path("parking_availability_change", {'idAvailability': availability.id, 'id': parking.id}) }}" class="btn btn-info btn-sm">
+														<i class="fa fa-pencil mr-0"></i>
+													</a>
+													<a onclick="return confirm('Do you want to delete the availability?')" href="{{ path("parking_availability_deletelocation", {'idAvailability': availability.id, 'id': parking.id}) }}" class="btn btn-danger btn-sm">
+
+														<i class="fa fa-trash-o mr-0"></i>
+													</a>
+												{% else %}
+													<a href="{{ path("parking_availability_deletelocation", {'idAvailability': availability.id, 'id': parking.id}) }}" disabled="disabled" class="btn btn-success btn-sm disabled">
+														<i class="fa fa-check mr-0"></i>
+													</a>
+													<a onclick="return confirm('Do you want to delete the availability?')" href="{{ path("parking_availability_deletelocation", {'idAvailability': availability.id, 'id': parking.id}) }}" class="btn btn-danger btn-sm">
+														<i class="fa fa-trash-o mr-0"></i>
+													</a>
+
+												{% endif %}
+											</td>
+										</tr>
+									{% else %}
+										<td colspan="5">No availability found!</td>
+									{% endfor %}
+
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script src="{{asset('vendors/jquery/dist/jquery.min.js')}}"></script>
+	<script src="{{asset('vendors/popper.js/dist/umd/popper.min.js')}}"></script>
+	<script src="{{asset('vendors/bootstrap/dist/js/bootstrap.min.js')}}"></script>
+	<script src="{{asset('assets/js/main.js')}}"></script>
+
+
+{% endblock %}

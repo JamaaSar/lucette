@@ -1,0 +1,135 @@
+{% extends 'layoutadmin.html.twig' %}
+
+{% block title %}Lucette{% endblock %}
+
+{% block content %}
+<div class="breadcrumbs">
+    <div class="col-sm-4">
+        <div class="page-header float-left">
+
+        </div>
+    </div>
+    <div class="col-sm-8">
+        <div class="page-header float-right">
+            <div class="page-title">
+                <ol class="breadcrumb text-right">
+                    <li><a href="{{ path("cms_dashboard") }}">Dashboard</a></li>
+                    <li><a href="{{ path("cleaner_calendar") }}">Planning</a></li>
+                    <li class="active">Details</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <div class="content mt-3">
+        <div class="animated fadeIn">
+            <div class="row">
+                <div class="col-lg-4 offset-md-4">
+                    <div class="card">
+                        <div class="card-header">
+                            <strong class="card-title">Description</strong>
+                        </div>
+                        <div class="card-body">
+
+                            <table class="table table-striped">
+                                <tbody>
+                                <tr>
+                                    <td>User</td>
+                                    <td>{{ planing.userId.FirstName|capitalize }} {{ planing.userId.LastName|capitalize }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Email Address</td>
+                                    <td>{{ planing.userId.email }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Phone Number</td>
+                                    <td>{{ planing.userId.phoneNumber }}</td>
+                                </tr>
+                                {% if planing.userCarId != null %}
+                                    <tr>
+                                        <td>Plaque</td>
+                                        <td>{{ planing.userCarId.userHasCarNicknameCar|capitalize }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Voiture</td>
+                                        <td>{{ planing.userCarId.UserHasCarIdCar.brandCar }} {{ planing.userCarId.UserHasCarIdCar.modelCar }} </td>
+                                    </tr>
+                                    {% if planing.userCarId.spaceNumber != null and planing.userCarId.spaceNumber != "" %}
+                                    <tr>
+                                        <td>Parking Space Number</td>
+                                        <td>{{ planing.userCarId.spaceNumber }}</td>
+                                    </tr>
+                                    {% endif %} 
+                                {% endif %}
+
+                                <tr>
+                                    <td>Date</td>
+                                    <td>{{ planing.date|date('Y-m-d') }}:   {{ planing.plannedStart|date('i:s') }}/{{ planing.plannedEnd|date('i:s') }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Produit</td>
+                                    <td>{{ planing.produit.name }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Option</td>
+                                    <td><ul>
+                                            {% for option in planing.PlannedCleaningOptions %}
+                                                <li>{{ option.optionId.name }}</li>
+                                            {% endfor %}
+                                        </ul></td>
+                                </tr>
+                                    {% if is_granted('ROLE_WORKER_ADMIN') %}
+                                        <td>Worker</td>
+                                        <td><ul>
+                                                {% for worker in workers %}
+                                                    <li>{{ worker.user.firstName }} {{ worker.user.LastName }}
+                                                        <a onclick="return confirm('DO you really want to delete this worker?')" href="{{ path("cleaner_delete", {'id': planing.id , 'iduser':worker.user.id}) }}" class="btn btn-danger btn-sm">
+                                                            <i class="fa fa-trash-o mr-0"></i>
+                                                        </a>
+                                                    </li>
+
+                                                {% endfor %}
+
+                                        </ul>
+                                    {% endif %}
+                                </tbody>
+                            </table>
+                            {% if is_granted('ROLE_WORKER_ADMIN') %}
+                                <a href="{{ path("cleaner_add", {'id': planing.id }) }}"  class="btn btn-success">Add Worker</a>
+                                <a href="{{ path("cleaner_edit", {'id': planing.id }) }}"  class="btn btn-info">Edit</a>
+                            {% endif %}
+                            {% if is_granted('ROLE_ADMIN') %}
+                                <a onclick="return confirm('Do you really want to delete this order?')" href="{{ path("cleaner_delete_order", {'id': planing.id }) }}"  class="btn btn-danger">Delete</a>
+                            {% endif %}
+                            <a href="{{ path("cleaner_calendar") }}"  class="btn btn-danger">Return</a>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+    <script src="{{asset('vendors/jquery/dist/jquery.min.js')}}"></script>
+  	<script src="{{asset('vendors/popper.js/dist/umd/popper.min.js')}}"></script>
+  	<script src="{{asset('vendors/bootstrap/dist/js/bootstrap.min.js')}}"></script>
+  	<script src="{{asset('assets/js/main.js')}}"></script>
+
+
+
+
+
+
+
+    <script>
+        function time_convert(num)
+        {
+            var hours = Math.floor(num / 60);
+            var minutes = num % 60;
+            return hours + ":" + minutes;
+        }
+    </script>
+
+{% endblock %}

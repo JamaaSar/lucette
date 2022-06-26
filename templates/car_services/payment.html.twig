@@ -1,0 +1,189 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+	<style>
+		.StripeElement {
+			box-sizing: border-box;
+
+			height: 40px;
+
+			padding: 10px 12px;
+
+			border: 1px solid transparent;
+			border-radius: 4px;
+			background-color: white;
+
+			box-shadow: 0 1px 3px 0 #e6ebf1;
+			-webkit-transition: box-shadow 150ms ease;
+			transition: box-shadow 150ms ease;
+		}
+
+		.StripeElement--focus {
+			box-shadow: 0 1px 3px 0 #cfd7df;
+		}
+
+		.StripeElement--invalid {
+			border-color: #fa755a;
+		}
+
+		.StripeElement--webkit-autofill {
+			background-color: #fefde5 !important;
+		}
+	</style>
+	<script src="https://js.stripe.com/v3/"></script>
+
+	<div class="content mt-3" style=" font-family: Calibri;">
+		<div class="animated fadeIn">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="col-lg-6">
+						<div class="card" style="border:0px; background-color:transparent;">
+							<div class="card-body" style="float:none;margin:10%;">
+								<header class="sr-header">
+									<div class="sr-header__logo" style="margin-bottom:20px;">
+										<img style=' width:100px; height:100px; margin-bottom: 15px;' src="{{asset('images/lucette.png')}}"/>
+
+									</div>
+								</header>
+								<div>
+									<h3>
+										<p>{{product.name}}</p>
+									</h3>
+									<h3 class="order-amount">{{price}}€</h3>
+									<br>
+									<img style='border-radius: 8px; width:500px; height:250px; margin-bottom: 25px;' src="{{asset('uploads/product/'~product.photo~'')}}"/>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-6">
+						<div class="card" style="border:0px; background-color:transparent;">
+							<div class="card-body" style="float:none;margin:10%">
+								<div class='header' style="margin-bottom:20px;">
+									<h3>Payer par carte</h3>
+								</div>
+								<div id="p">
+								{% if creditCards != null %}
+								<form id="payment-form1" action="{{ path('carservice_savedcard', {'price': price|round(0, 'floor'), 'decimal': decimal}) }}" method="post">
+
+									
+										<fieldset class="border p-2" style="border-radius:12px;">
+											<legend class="w-auto" style='margin-left:25px;'>Your cards
+											</legend>
+											<div class="form-group" style="margin-left:25px;">
+												<input type="radio" name="creditCard" value="{{ creditCards|last.id }}" id="creditCard">
+													<label for="{{ creditCards|last.id }}">
+														{{ creditCards|last.cardtype }}
+														ending : ****
+														<strong>{{ creditCards|last.lastDigits }}</strong>
+														expires
+														<strong>{{ creditCards|last.monthValidity }}/{{ creditCards|last.yearValidity }}</strong>
+													</label><br>
+												<br>
+												<input id="product_id" name="product_id" type="hidden" value="{{categoryProduct.id}}">
+												<input id="availability" name="availability" type="hidden" value="{{ availability.id}}">
+												<input id="user_id" name="user_id" type="hidden" value="{{app.user.email}}">
+												{% for catop in categoryOption %}
+													<input id="{{catop.id }}" name="options[]" type="hidden" value=" {{catop.id}} ">
+												{% endfor %}
+												<input id="parkingId" name="parkingId" type="hidden" value="{{parking.id}}">
+												<input id="carid" name="carid" type="hidden" value="{{car.id}}">
+												<input id="start" name="start" type="hidden" value="{{start}}">
+												<input id="end" name="end" type="hidden" value="{{end}}">
+												<input id="duration" name="duration" type="hidden" value="{{ duration}}">
+												<div>
+													<button disabled="disabled" class="form-control" style="background-color:#30c794ff;" type="submit" id='savedCard' name="savedCard">Pay
+														{{price}}€</button>
+												</div>
+											</div>
+										</fieldset>
+								
+									<br>
+								</form>
+									{% endif %}
+								<form id="payment-form" action="{{ path('carservice_newmethod', {'price': price|round(0, 'floor'), 'decimal': decimal}) }}" method="post">
+									<fieldset class="border p-2" style="border-radius:12px;">
+										<legend class="w-auto" style='margin-left:25px;'>Use new payment method
+										</legend>
+										<div class="form-group" style="margin-left:25px;">
+											<div class="form-group">
+												<label for="cardholder-name">
+													Cardholder Name
+												</label>
+												<input class="form-control" name="cardholder-name" id="cardholder-name" type="text" style="width:100%;">
+											</div>
+											<div class="form-group">
+												<label for="card-element">
+													Credit card
+												</label>
+
+												<div
+													id="card-element"><!-- A Stripe Element will be inserted here. -->
+												</div>
+											</div>
+											<br>
+											<div>
+												<input type="checkbox" id="savemycard" name="savemycard" data-secret="<?= $intent->client_secret ?>">
+												<label>&nbsp;Save for future payments</label>
+											</div>
+											<input id="product_id" name="product_id" type="hidden" value="{{categoryProduct.id}}">
+											<input id="availability" name="availability" type="hidden" value="{{ availability.id}}">
+											<input id="user_id" name="user_id" type="hidden" value="{{app.user.email}}">
+											{% for catop in categoryOption %}
+												<input id="{{catop.id }}" name="options[]" type="hidden" value=" {{catop.id}} ">
+											{% endfor %}
+											<input id="parkingId" name="parkingId" type="hidden" value="{{parking.id}}">
+											<input id="carid" name="carid" type="hidden" value="{{car.id}}">
+											<input id="start" name="start" type="hidden" value="{{start}}">
+											<input id="end" name="end" type="hidden" value="{{end}}">
+											<input id="duration" name="duration" type="hidden" value="{{ duration}}">
+											<div id="card-errors" role="alert"></div>
+										</div>
+										<button class="form-control" style="background-color:#30c794ff;" id="card-button" data-secret="<?= $intent->client_secret ?>">
+											Pay
+											{{price}}€
+										</button>
+										
+									</div>
+								</fieldset>
+							</form>
+							</div>
+								<div id="loader" style="display:none">
+											<p><strong>
+												<i class='fa fa-spinner fa-spin'></i>&nbsp;&nbsp;&nbsp;
+												Please wait. Payment Processing...</strong></p>
+										</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script src="{{asset('vendors/jquery/dist/jquery.min.js')}}"></script>
+<script src="{{asset('vendors/popper.js/dist/umd/popper.min.js')}}"></script>
+<script src="{{asset('vendors/bootstrap/dist/js/bootstrap.min.js')}}"></script>
+<script src="{{asset('assets/js/main.js')}}"></script>
+<script src="{{asset('assets/js/stripe.js')}}"></script>
+<script>
+jQuery(document).ready(function ($) {
+$(document).ready(function () {
+$("input[name='creditCard']").click(function () {
+$("#savedCard").prop("disabled", false);
+$("#card-button").prop("hidden", true);
+});
+});
+
+});
+</script>
+<script>
+	jQuery(document).ready(function ($) {
+$(document).ready(function () {
+$("button[name='savedCard']").click(function () {
+	$("#savedCard").prop("hidden", true);
+});
+
+});
+
+});
+</script>{% endblock %}

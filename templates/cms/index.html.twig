@@ -1,0 +1,231 @@
+{% extends 'layoutadmin.html.twig' %}
+
+{% block title %}Lucette
+{% endblock %}
+
+{% block content %}
+<div class="breadcrumbs">
+	<div class="col-sm-4">
+		<div
+			class="page-header float-left">{#{% if is_granted('ROLE_ADMIN') %}
+																																																																																																																																																																																																																																																																																																																																																					<ol class="breadcrumb text-left">
+																																																																																																																																																																																																																																																																																																																																																						{% if googleCalendarConnected is null %}
+																																																																																																																																																																																																																																																																																																																																																							<button type="button" class="btn btn-xs social google-plus" style="margin-bottom: 4px">
+																																																																																																																																																																																																																																																																																																																																																								<i class="fa fa-google-plus-square"></i>
+																																																																																																																																																																																																																																																																																																																																																								<a href="{{ path("cms_apiCalendar") }}" style="color:white;">
+																																																																																																																																																																																																																																																																																																																																																									Connect your account to google calendar
+																																																																																																																																																																																																																																																																																																																																																																								</a>
+																																																																																																																																																																																																																																																																																																																																																							</button>
+																																																																																																																																																																																																																																																																																																																																																																										{% endif %}
+																																																																																																																																																																																																																																																																																																																																																																									</ol>
+																																																																																																																																																																																																																																																																																																																																																																											{% endif %}#}
+		</div>
+	</div>
+	<div class="col-sm-8">
+		<div class="page-header float-right">
+			<div class="page-title">
+				<ol class="breadcrumb text-right">
+					<li class="active">Dashboard</li>
+				</ol>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="content mt-3" style="font-family: Georgia, serif;">
+	<div class="animated fadeIn">
+		<div class="row">
+			{% if is_granted('ROLE_USER') %}
+				<div class="col-md-12">
+					{% if validerbyuser != 0 %}
+						<div class="sufee-alert alert with-close alert-danger alert-dismissible fade show" role="alert">&nbsp;&nbsp;
+							<span class="badge badge-pill badge-danger">&nbsp;&nbsp;<i class="fa fa-warning"></i>&nbsp;&nbsp;</span>&nbsp;&nbsp;
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																You have a
+							{{validerbyuser}}
+							{% if validerbyuser > 1 %}
+								orders
+							{% else %}
+								order
+							{% endif %}
+							awaiting your validation. &nbsp;
+							<a href="{{ path("planned_services_list") }}">Click here to see your waiting list
+							</a>
+							<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+								<span aria-hidden="true">×</span>
+							</button>
+						</div>
+					{% endif %}
+				</div>
+				<div class="col-md-12">
+					<div class="header">
+						<h4 style="text-align:center; font-family: Georgia, serif; ">Our dedicated services</h4>
+					</div><br>
+					<div class="card-deck">
+						<table class="table table-striped table-basic">
+							<thead>
+								<tr>
+									<th align="center">
+										<p align="center">
+											<a href="{{ path("carservice_carServices") }}"><img src="{{asset('images/carservice1.jpg')}}" style='border-radius: 8px; box-shadow: 10px 10px 10px 10px #cfcfcf; ' height="150" width="250" alt="Car Services"></a>
+										</p>
+									</th>
+
+									<th align="center ">
+										<div class="row justify-content-center">
+											<div>
+												<p align="center">
+													{% if custom_layout is defined %}
+														{% if custom_layout.id == 14 %}
+															<script type="text/javascript">
+																function AlertI() {
+var answer = confirm("Vous allez être redirigé vers le site de Moovee Corporate Sharing.")
+if (answer) 
+window.location = "https://business.moovee-mobility.com/download-fr";
+
+
+
+}
+															</script>
+															<a href="javascript:AlertI();"><img src="{{asset('images/carsharing.jpg')}}" style='border-radius: 8px; box-shadow: 10px 10px 10px 10px #cfcfcf;' height="150" width="250" alt="carsharing"></a>
+														{% else %}
+															<script type="text/javascript">
+																function AlertI() {
+var answer = confirm("Vous allez être redirigé vers le site de Moovee Corporate Sharing")
+if (answer) 
+window.location = "https://business.moovee-mobility.com/download-fr";
+
+
+
+}
+															</script>
+															<a href="javascript:AlertI();"><img src="{{asset('images/carsharing.jpg')}}" style='border-radius: 8px; box-shadow: 10px 10px 10px 10px #cfcfcf;' height="150" width="250" alt="carsharing"></a>
+														{% endif %}
+													{% endif %}
+												</p>
+											</div>
+											<div class="row">
+												<div class="d-flex align-items-center" style="padding-left:50px;padding-right:20px;">
+													<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#111" class="bi bi-arrow-right" viewbox="0 0 16 16">
+														<path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+													</svg>
+												</div>
+												<div class="d-flex align-items-center" style="margin-left:10px;">
+													<div align="center">
+														Scan me
+														<br>
+														<img width="100px" src="{{asset('images/qr.svg')}}">
+													</div>
+
+												</div>
+
+											</div>
+
+
+										</div>
+
+									</th>
+								</tr>
+							</thead>
+						</th>
+					</tr>
+				</thead>
+			</th>
+		</tr>
+	</thead>
+</img></th></tr><tr><th align="center">
+<p align="center">Premium Car Services</p></th><th align="center">
+<p align="center">Car sharing</p></th><th></th></tr></thead></table></div></div></div><br><div class="col-md-12"><div class="card-deck"><table class="table table-striped table-basic"><thead><tr><th align="center"><p align="center">
+<a href="{{ path("wellness_wellnessServices") }}"><img src="{{asset('images/wellness.jpg')}}" style='border-radius: 8px; box-shadow: 10px 10px 10px 10px #cfcfcf;' height="150" width="250" alt="Wellness"></a></p></th><th align="center"><p align="center">
+<a href="{{ path("hairsalon_hair_salon") }}"><img src="{{asset('images/hairsalon.jpg')}}" style='border-radius: 8px; box-shadow: 10px 10px 10px 10px #cfcfcf;' height="150" width="250" alt="Beauty"></a></p></th><th align="center"><p align="center">
+
+<a href="{{ path("bioOrders") }}"><img src="{{asset('images/logo_chat_biotte.jpg')}}" style='border-radius: 8px; box-shadow: 10px 10px 10px 10px #cfcfcf;' height="150" width="250" alt="Bioorders"></a></p></th><th align="center"><p align="center">
+{% if custom_layout is defined %}
+	{% if custom_layout.id == 14 %}
+
+		<script type="text/javascript">
+			function AlertIt() {
+var answer = confirm("Vous allez être redirigé vers le site de Klin Business. Si vous utilisez le service pour la première fois, utilisez le code société CAMPUS afin de profiter d'avantages exclusifs !")
+if (answer) 
+window.location = "https://business.klin.lu/login";
+
+
+
+}
+		</script>
+		<a href="javascript:AlertIt();"><img src="{{asset('images/laundry1.jpg')}}" style='border-radius: 8px; box-shadow: 10px 10px 10px 10px #cfcfcf;' height="150" width="250" alt="Laundry"></a>
+	{% else %}
+		<script type="text/javascript">
+			function AlertIt() {
+var answer = confirm("Vous allez être redirigé vers le site de Klin Business")
+if (answer) 
+window.location = "https://business.klin.lu/login";
+
+
+
+}
+		</script>
+		<a href="javascript:AlertIt();"><img src="{{asset('images/laundry1.jpg')}}" style='border-radius: 8px; box-shadow: 10px 10px 10px 10px #cfcfcf;' height="150" width="250" alt="Laundry"></a>
+	{% endif %}
+{% endif %}</p></th></tr></thead></p></th></tr><tr><th align="center"><p align="center">Wellness Services</p></th><th align="center"><p align="center">Beauty</p></th><th align="center"><p align="center">Le Chat Biotté</p></th><th align="center"><p align="center">Laundry Services</p></th></tr></thead></table> </div></div></div>{% endif %}<div class="col-sm-12 mb-4">{% if googleCalendarConnected is not null %}{% if googleCalendarConnected.calendarid is null %} <div class="sufee-alert alert with-close alert-warning alert-dismissible fade show" role="alert"><span class="badge badge-pill badge-warning">Alert</span>Please choose your calendar!<a href="{{ path('cms_choosecalendar', {'id': googleCalendarConnected.id} ) }}">Click here</a> </div>{% endif %}{% endif %}<div class="card-group">{% if is_granted('ROLE_WORKER_ADMIN') %} {% if not is_granted('ROLE_ADMIN') %}<div class="card col-md-3 col-md-3 bg-flat-color-4" style="border-radius:7px; margin:1px;"><a style="color: white" class="stretched-link" href="{{ path("provider_waitlist")}}"><div class="card-body bg-flat-color-0"><div class="h1 text-muted text-right mb-4"><i class="fa fa-bars text-light"></i></div><div class="h4 mb-0 text-light"><span class="count">{{plannedCleaning}}</span></div><small class="text-uppercase font-weight-bold text-light">Pending Orders</small><div class="h6 text-muted text-right mb-4"></div></div></a></div><div class="card col-md-3 col-md-3 bg-flat-color-2" style="border-radius:7px; margin:1px;"><a style="color: white" class="stretched-link" href="{{ path("order_list")}}"><div class="card-body bg-flat-color-2"><div class="h1 text-muted text-right mb-4"><i class="fa fa-calendar text-light"></i></div><div class="h4 mb-0 text-light"><span class="count">{{nbIncoming}}</span></div><small class="text-uppercase font-weight-bold text-light">Incoming Orders</small><div class="h6 text-muted text-right mb-4"></div></div></a></div><div class="card col-md-3 col-md-3  bg-flat-color-3" style="border-radius:7px; margin:1px;"><a style="color: white" class="stretched-link" href="{{ path("parking_listofavailability")}}"><div class="card-body bg-flat-color-3 "><div class="h1 text-muted text-right mb-4"><i class="fa fa-check text-light"></i></div><div class="h4 mb-0 text-light"><span class="count">{{nbAvailability}}</span></div><small class="text-uppercase font-weight-bold text-light">Availability</small><div class="h6 text-muted text-right mb-0"></div></div></a></div><div class="card col-md-3 col-md-3 bg-flat-color-1" style="border-radius:7px; margin:1px;"><div class="card-body"><div class="h1 text-muted text-right mb-4"><i class="fa fa-eur text-light"></i></div><div class="h4 mb-0 text-light"><span class="count">{{chiffreDaf}}€</span></div><small class="text-uppercase font-weight-bold text-light">Turnover for{{mois}}</small></div></div> {% endif %} {% if is_granted('ROLE_ADMIN') %}<div class="card col-md-3 col-md-3 bg-flat-color-4" style="border-radius:7px; margin:1px;"><a style="color: white" class="stretched-link" href="{{ path("provider_waitlist")}}"><div class="card-body bg-flat-color-0"><div class="h1 text-muted text-right mb-4"><i class=" fa fa-bars text-light"></i></div><div class="h4 mb-0 text-light"><span class="count">{{plannedCleaning}}</span></div><small class="text-uppercase font-weight-bold text-light">Pending Orders</small><div class="h6 text-muted text-right mb-4"></div></div></a></div><div class="card col-md-3 col-md-3 bg-flat-color-2" style="border-radius:7px; margin:1px;"><a style="color: white" class="stretched-link" href="{{ path("order_list")}}"><div class="card-body bg-flat-color-2"><div class="h1 text-muted text-right mb-4"><i class="fa fa-calendar text-light"></i></div><div class="h4 mb-0 text-light"><span class="count">{{nbIncoming}}</span></div><small class="text-uppercase font-weight-bold text-light">Incoming Orders</small><div class="h6 text-muted text-right mb-4"></div></div></a></div><div class="card col-md-3 col-md-3  bg-flat-color-3" style="border-radius:7px; margin:1px;"><a style="color: white" class="stretched-link" href="{{ path("parking_listofavailability")}}"><div class="card-body bg-flat-color-3 "><div class="h1 text-muted text-right mb-4"><i class="fa fa-check text-light"></i></div><div class="h4 mb-0 text-light"><span class="count">{{nbAvailability}}</span></div><small class="text-uppercase font-weight-bold text-light">Availability</small><div class="h6 text-muted text-right mb-0"></div></div></a></div><div class="card col-md-3 col-md-3 bg-flat-color-1" style="border-radius:7px; margin:1px;"><a style="color: white" class="stretched-link" href="{{ path("cms_turnover")}}"><div class="card-body"><div class="h1 text-muted text-right mb-4"><i class="fa fa-eur text-light"></i></div><div class="h4 mb-0 text-light"><span class="count">{{chiffreDaf}}€</span></div><small class="text-uppercase font-weight-bold text-light">Turnover for{{mois}}</small></div></a></div> {% endif %}</div></div><div class="col-lg-6"><div class="card  no-padding" style='border-radius:13px;'> <div class="card-header" style="text-align:center; background-color:white; border-top-left-radius:13px; border-top-right-radius:13px; border-bottom-style:hidden;"><h7>Monthly turnover</h7> </div> <div class="card-body"><canvas id="myChart" height="500" width="800"></canvas> </div></div></div></div>{% endif %}<br></div><!--.animated--></div><!--.content--><script src="{{asset('vendors/jquery/dist/jquery.min.js')}}"></script><script src="{{asset('vendors/popper.js/dist/umd/popper.min.js')}}"></script><script src="{{asset('vendors/bootstrap/dist/js/bootstrap.min.js')}}"></script><script src="{{asset('assets/js/main.js')}}"></script><script src="{{asset('vendors/chart.js/dist/Chart.min.js')}}"></script><script>var month = []; // X Axis Label
+
+var ca = []; // Value and Y Axis basis
+
+
+{% for res, value in arrData %}month.push({{ value.month }});
+ca.push({{ value.ca }});{% endfor %}var ctx = document.getElementById('myChart').getContext('2d');
+var myChart = new Chart(ctx, {
+type: 'bar',
+data: {
+labels: [
+'January',
+'February',
+'March',
+'April',
+'May',
+'June',
+'July',
+'August',
+'September',
+'october',
+'november',
+'december'
+],
+datasets: [
+{
+label: "Monthly turnover €",
+data: [
+ca[0],
+ca[1],
+ca[2],
+ca[3],
+ca[4],
+ca[5],
+ca[6],
+ca[7],
+ca[8],
+ca[9],
+ca[10],
+ca[11],
+ca[12]
+],
+backgroundColor: "rgba(0,123,255,.3)",
+borderColor: "rgba(0, 123, 255, 0.9)",
+borderWidth: 1
+},
+]
+},
+options: {
+maintainAspectRatio: true,
+legend: {
+display: false
+},
+scales: {
+xAxes: [
+{
+barPercentage: 1
+}
+]
+
+}
+}
+
+});</script>{% endblock %}

@@ -1,0 +1,115 @@
+{% extends 'layoutadmin.html.twig' %}
+
+{% block title %}Lucette
+{% endblock %}
+
+
+{% block content %}
+<div class="breadcrumbs"></div>
+<div class="content mt-3" style="font-family: Calibri;">
+	<div class="col-lg-12">
+		{% for message in app.flashes('danger') %}
+			<div class="sufee-alert alert with-close alert-danger alert-dismissible fade show" role="alert">
+				<span class="badge badge-pill badge-danger">Warning</span>
+				{{ message }}
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+		{% endfor %}
+		<br>
+		<form id="payment-form" action="{{ path('carservice_payment') }}" method="post">
+			<div class="col-md-6">
+				<div class="header">
+					<h4 style="text-align:center;">
+					</h4>
+				</div><br><br><br>
+				<div class="polaroid col-md-8" style="float:none;margin:auto;">
+				<button type="button" style="border:none; background-color:transparent;">
+					<img style='border-radius: 8px; box-shadow: 10px 10px 10px 10px #cfcfcf; width:500px; height:250px; margin-bottom: 25px;' src="{{asset('uploads/category/'~currentservice.photo~'')}}"/>
+					<div class="container" style="text-align:center;padding-top:10px;">
+						<p>
+							<strong class="text-uppercase"style="text-align:center;" >
+								{{currentservice.category}}
+							</strong>
+						</p>
+					</div>
+					</button>
+				</div>
+
+			</div>
+			<div class="col-md-6">
+				<div class="header">
+					<h4 style="text-align:center;  ">
+						Choose your car
+					</h4>
+				</div><br>
+				<div class="card" style='border:0px; background-color: transparent;'>
+					<div class="card-body">
+						<br>
+						<select name="voiture" id="voiture" class="form-control" style="border-radius: 8px; width: 400px;">
+							<form id="formproduct" action="{{ path('carservice_product') }}" method="post">
+								<option value selected="selected">Select your car</option>
+								{% for UserHasCar in UserHasCars %}
+									{% if UserHasCars|length == 1 %}
+										<option value="{{ UserHasCar.id }}">{{ UserHasCar.UserHasCarNicknameCar }}:
+											{{ UserHasCar.UserHasCarIdCar.brandCar }}
+											{{ UserHasCar.UserHasCarIdCar.modelCar }}</option>
+									{% else %}
+										<option value="{{ UserHasCar.id }}">{{ UserHasCar.UserHasCarNicknameCar }}:
+											{{ UserHasCar.UserHasCarIdCar.brandCar }}
+											{{ UserHasCar.UserHasCarIdCar.modelCar }}</option>
+									{% endif %}
+								{% endfor %}
+							</select>
+						</form>
+						<br>
+						<form id="jsform" name='myform' method="post" action=" {{path('carservice_product')}}">
+							{% for availability in availabilities %}
+								<input type="hidden" id="availability" name="availability" value="{{availability.id}}">
+							{% endfor %}
+							<input type="hidden" id="serviceid" name="serviceid" value="{{serviceId}}">
+						</form>
+						<h6>
+							If you want to add another car &nbsp;&nbsp;
+							<input type="hidden" id="serviceid" name="serviceid" value="{{serviceId}}">
+							<a class="btn btn-success" href="{{ path('carservice_addcar', {'id': serviceId}) }}">
+								Add new car
+							</a>
+						</h6>
+					</div>
+					<div class="card-footer" style="border:0px; background-color:transparent;">
+						<a style="float: right;" href="{{ path("carservice_carServices") }}" class="btn btn-danger">Back</a>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+	<!-- .animated -->
+</div>
+<link rel="stylesheet" href="{{asset('assets/css/checkbox.css')}}">
+<script src="{{asset('vendors/jquery/dist/jquery.min.js')}}"></script>
+<script src="{{asset('vendors/popper.js/dist/umd/popper.min.js')}}"></script>
+<script src="{{asset('vendors/bootstrap/dist/js/bootstrap.min.js')}}"></script>
+<script src="{{asset('assets/js/main.js')}}"></script>
+<script>
+	jQuery(document).ready(function ($) {
+
+$("#voiture").on('change', function () {
+var availability = $('#jsform').serialize();
+console.log(availability);
+
+
+
+var myurl = "{{ path('carservice_product') }}";
+
+
+var x = this.value;
+window.location.href = myurl + "?userhascarid=" + x + "&" + availability;
+
+
+});
+
+});
+</script>
+{% endblock %}

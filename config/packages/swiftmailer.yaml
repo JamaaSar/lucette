@@ -1,0 +1,8 @@
+swiftmailer:
+    transport: smtp
+    auth_mode: login
+    port: 587
+    host: ssl0.ovh.net
+    username: noreply@moovee.lu
+    password: Moovee#2019!
+    

@@ -1,0 +1,199 @@
+<?php return [PHP_INT_MAX, static function () {
+
+    return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
+        $o = [
+            clone (($p = &\Symfony\Component\VarExporter\Internal\Registry::$prototypes)['Doctrine\\ORM\\Mapping\\ClassMetadata'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\ClassMetadata')),
+            clone ($p['Doctrine\\ORM\\Id\\IdentityGenerator'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Id\\IdentityGenerator')),
+        ],
+        null,
+        [
+            'stdClass' => [
+                'name' => [
+                    'App\\Entity\\MooveeCompany',
+                ],
+                'namespace' => [
+                    'App\\Entity',
+                ],
+                'rootEntityName' => [
+                    'App\\Entity\\MooveeCompany',
+                ],
+                'customRepositoryClassName' => [
+                    'App\\Repository\\MooveeCompanyRepository',
+                ],
+                'identifier' => [
+                    [
+                        'id',
+                    ],
+                ],
+                'generatorType' => [
+                    4,
+                ],
+                'fieldMappings' => [
+                    [
+                        'id' => [
+                            'fieldName' => 'id',
+                            'type' => 'integer',
+                            'scale' => 0,
+                            'length' => null,
+                            'unique' => false,
+                            'nullable' => false,
+                            'precision' => 0,
+                            'id' => true,
+                            'columnName' => 'id',
+                        ],
+                        'name' => [
+                            'fieldName' => 'name',
+                            'type' => 'string',
+                            'scale' => 0,
+                            'length' => 255,
+                            'unique' => false,
+                            'nullable' => false,
+                            'precision' => 0,
+                            'columnName' => 'name',
+                        ],
+                        'address' => [
+                            'fieldName' => 'address',
+                            'type' => 'string',
+                            'scale' => 0,
+                            'length' => 255,
+                            'unique' => false,
+                            'nullable' => false,
+                            'precision' => 0,
+                            'columnName' => 'address',
+                        ],
+                        'phone_number' => [
+                            'fieldName' => 'phone_number',
+                            'type' => 'string',
+                            'scale' => 0,
+                            'length' => 32,
+                            'unique' => false,
+                            'nullable' => false,
+                            'precision' => 0,
+                            'columnName' => 'phone_number',
+                        ],
+                        'code_entreprise' => [
+                            'fieldName' => 'code_entreprise',
+                            'type' => 'string',
+                            'scale' => 0,
+                            'length' => 255,
+                            'unique' => false,
+                            'nullable' => false,
+                            'precision' => 0,
+                            'columnName' => 'code_entreprise',
+                        ],
+                        'contact_entreprise' => [
+                            'fieldName' => 'contact_entreprise',
+                            'type' => 'string',
+                            'scale' => 0,
+                            'length' => 255,
+                            'unique' => false,
+                            'nullable' => false,
+                            'precision' => 0,
+                            'columnName' => 'contact_entreprise',
+                        ],
+                        'contact_mail_entreprise' => [
+                            'fieldName' => 'contact_mail_entreprise',
+                            'type' => 'string',
+                            'scale' => 0,
+                            'length' => 255,
+                            'unique' => false,
+                            'nullable' => false,
+                            'precision' => 0,
+                            'columnName' => 'contact_mail_entreprise',
+                        ],
+                        'created_date' => [
+                            'fieldName' => 'created_date',
+                            'type' => 'datetime',
+                            'scale' => 0,
+                            'length' => null,
+                            'unique' => false,
+                            'nullable' => false,
+                            'precision' => 0,
+                            'columnName' => 'created_date',
+                        ],
+                        'updated_date' => [
+                            'fieldName' => 'updated_date',
+                            'type' => 'datetime',
+                            'scale' => 0,
+                            'length' => null,
+                            'unique' => false,
+                            'nullable' => true,
+                            'precision' => 0,
+                            'columnName' => 'updated_date',
+                        ],
+                        'photo' => [
+                            'fieldName' => 'photo',
+                            'type' => 'string',
+                            'scale' => 0,
+                            'length' => 255,
+                            'unique' => false,
+                            'nullable' => false,
+                            'precision' => 0,
+                            'columnName' => 'photo',
+                        ],
+                    ],
+                ],
+                'fieldNames' => [
+                    [
+                        'id' => 'id',
+                        'name' => 'name',
+                        'address' => 'address',
+                        'phone_number' => 'phone_number',
+                        'code_entreprise' => 'code_entreprise',
+                        'contact_entreprise' => 'contact_entreprise',
+                        'contact_mail_entreprise' => 'contact_mail_entreprise',
+                        'created_date' => 'created_date',
+                        'updated_date' => 'updated_date',
+                        'photo' => 'photo',
+                    ],
+                ],
+                'columnNames' => [
+                    [
+                        'id' => 'id',
+                        'name' => 'name',
+                        'address' => 'address',
+                        'phone_number' => 'phone_number',
+                        'code_entreprise' => 'code_entreprise',
+                        'contact_entreprise' => 'contact_entreprise',
+                        'contact_mail_entreprise' => 'contact_mail_entreprise',
+                        'created_date' => 'created_date',
+                        'updated_date' => 'updated_date',
+                        'photo' => 'photo',
+                    ],
+                ],
+                'table' => [
+                    [
+                        'name' => 'moovee_company',
+                    ],
+                ],
+                'associationMappings' => [
+                    [
+                        'parkings' => [
+                            'fieldName' => 'parkings',
+                            'mappedBy' => 'company',
+                            'targetEntity' => 'App\\Entity\\Parkings',
+                            'cascade' => [],
+                            'orphanRemoval' => false,
+                            'fetch' => 2,
+                            'type' => 4,
+                            'inversedBy' => null,
+                            'isOwningSide' => false,
+                            'sourceEntity' => 'App\\Entity\\MooveeCompany',
+                            'isCascadeRemove' => false,
+                            'isCascadePersist' => false,
+                            'isCascadeRefresh' => false,
+                            'isCascadeMerge' => false,
+                            'isCascadeDetach' => false,
+                        ],
+                    ],
+                ],
+                'idGenerator' => [
+                    $o[1],
+                ],
+            ],
+        ],
+        $o[0],
+        []
+    );
+
+}];

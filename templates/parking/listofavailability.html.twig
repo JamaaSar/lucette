@@ -1,0 +1,131 @@
+{% extends 'layoutadmin.html.twig' %}
+
+{% block title %}Lucette
+{% endblock %}
+
+{% block content %}
+	<div class="breadcrumbs">
+		<div class="col-sm-4">
+			<div class="page-header float-left"></div>
+		</div>
+		<div class="col-sm-8">
+			<div class="page-header float-right">
+				<div class="page-title">
+					<ol class="breadcrumb text-right">
+						<li>
+							<a href="{{ path("cms_dashboard") }}">Dashboard</a>
+						</li>
+						<li class="active">Availability</li>
+					</ol>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="content mt-3">
+		<div class="animated fadeIn">
+			<div class="row">
+				<div class="col-sm-12 ">
+
+						<div class="header">
+								<h4 style="text-align:center;">Next availability</h4>
+						</div>
+
+						<div class="card-body">
+							{% for message in app.flashes('success') %}
+								<div class="sufee-alert alert with-close alert-success alert-dismissible fade show" role="alert">
+									<span class="badge badge-pill badge-success">Success</span>
+									{{ message }}
+									<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									</button>
+								</div>
+							{% endfor %}
+							<table id="bootstrap-data-table-export" class="table  bordered">
+								<thead style="background-color: #85A6B8; color: white;">
+
+									<tr>
+										<th>Location</th>
+										{% if is_granted('ROLE_ADMIN') %}
+											<th>Provider</th>
+										{% endif %}
+										<th>Date</th>
+										<th>From</th>
+										<th>To</th>
+										<th>Available Services
+										</th>
+										<th>Order</th>
+										<th>
+											<a href="{{ path("parking_addavailability") }}" class="btn btn-success btn-sm">
+												<i class="fa fa-plus"></i>
+											</a>
+	<a href="{{ path("parking_recurrence") }}" class="btn btn-success btn-sm">
+											<i class="fa fa-plus">
+												Multiple </i>
+										</a>
+										</th>
+									</tr>
+								</thead>
+								<tbody>
+									{% for availability in availabilities %}
+
+										<tr>
+											<td>{{availability.parking.name}}</td>
+											{% if is_granted('ROLE_ADMIN') %}
+												<td>{{ availability.provider.name }}</td>
+											{% endif %}
+											<td>{{ availability.date|date('d-m-Y') }}</td>
+											<td>{{ availability.debut }}</td>
+											<td>{{ availability.fin }}</td>
+											<td>
+												{% for product in availability.provider.products %}
+													{% if product.supprime is null %}
+													{{ product.name }}
+
+												{% endif %}
+												{% endfor %}
+											</td>
+											<td>{{orderNumber[loop.index0] }}</td>
+											<td>
+												<a href="{{ path("parking_availability", {'id': availability.parking.id}) }}" class="btn btn-success btn-sm">
+													<i class="fa fa-plus"></i>
+												</a>
+												<a onclick="return confirm('Do you want to delete the availability?')" href="{{ path("parking_availability_deletelist", { 'id': availability.parking.id, 'idAvailability': availability.id}) }}" class="btn btn-danger btn-sm">
+
+
+													<i class="fa fa-trash-o mr-0"></i>
+												</a>
+											</td>
+
+
+										</tr>
+									{% else %}
+										<td colspan="5">No availability found!</td>
+									{% endfor %}
+
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script src="{{asset('vendors/jquery/dist/jquery.min.js')}}"></script>
+	<script src="{{asset('vendors/popper.js/dist/umd/popper.min.js')}}"></script>
+	<script src="{{asset('vendors/bootstrap/dist/js/bootstrap.min.js')}}"></script>
+	<script src="{{asset('assets/js/main.js')}}"></script>
+<script src="../vendors/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="../vendors/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
+<script src="../vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+<script src="../vendors/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
+<script src="../vendors/jszip/dist/jszip.min.js"></script>
+<script src="../vendors/pdfmake/build/pdfmake.min.js"></script>
+<script src="../vendors/pdfmake/build/vfs_fonts.js"></script>
+<script src="../vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>
+<script src="../vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
+<script src="../vendors/datatables.net-buttons/js/buttons.colVis.min.js"></script>
+<script src="../assets/js/init-scripts/data-table/datatables-init.js"></script>
+
+
+{% endblock %}

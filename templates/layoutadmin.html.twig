@@ -1,0 +1,439 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+	<aside id="left-panel" class="left-panel">
+		<nav class="navbar navbar-expand-sm navbar-default">
+
+			<div class="navbar-header">
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-menu" aria-controls="main-menu" aria-expanded="false" aria-label="Toggle navigation">
+					<i class="fa fa-bars"></i>
+				</button>
+				<a class="navbar-brand app-header__logo" href="{{ path("cms_dashboard") }}"><img src="{{asset('images/lucette.png')}}" alt="Logo"></a>
+				<a class="navbar-brand hidden app-header__logo" href="{{ path("cms_dashboard") }}"></a>
+			</div>
+
+			<div id="main-menu" class="main-menu collapse navbar-collapse">
+
+
+				<ul class="nav navbar-nav">
+					<li>
+						<a href="{{ path("cms_dashboard") }}">
+							<i class="menu-icon fa fa-dashboard"></i>Dashboard
+						</a>
+					</li>
+
+					<!-- ROLE_ADMIN -->
+					{% if is_granted('ROLE_ADMIN') %}
+						<h3 class="menu-title">Clients</h3>
+						<!-- /.menu-title -->
+						<li>
+							<a href="{{ path("cleaner_calendar")}}">
+								<i class="menu-icon fa fa-calendar"></i>Planning
+							</a>
+						</li>
+						<li>
+							<a href="{{ path("parking_listofavailability")}}">
+								<i class="menu-icon ti-check"></i>Availability</a>
+						</li>
+						<li>
+							<a href="{{ path("client_list")}}">
+								<i class="menu-icon ti-user"></i>Clients
+							</a>
+						</li>
+						<li>
+							<a href="{{ path("client_sanscode")}}">
+								<i class="menu-icon fa fa-exclamation"></i>Clients with error</a>
+						</li>
+						<li>
+							<a href="{{ path("reduction_list")}}">
+								<i class="menu-icon ti-gift"></i>Reduction
+							</a>
+						</li>
+						<li>
+							<a href="{{ path("usercar_list")}}">
+								<i class="menu-icon ti-car"></i>Users's cars
+							</a>
+						</li>
+						<li>
+							<a href="{{ path("order_list")}}">
+								<i class="menu-icon ti-credit-card"></i>Orders
+							</a>
+						</li>
+						<li>
+							<a href="{{ path("provider_waitlist")}}">
+								<i class="menu-icon fa fa-bars"></i>Waitlist
+							</a>
+						</li>
+						<h3 class="menu-title">Companies</h3>
+						<!-- /.menu-title -->
+						<li>
+							<a href="{{ path("company_list")}}">
+								<i class="menu-icon ti-home"></i>Company
+							</a>
+						</li>
+						<li>
+							<a href="{{ path("parking_list") }}">
+								<i class="menu-icon ti-map"></i>Locations
+							</a>
+						</li>
+
+						<h3 class="menu-title">Providers</h3>
+						<!-- /.menu-title -->
+						<li>
+							<a href="{{ path("provider_list")}}">
+								<i class="menu-icon ti-truck"></i>Provider
+							</a>
+						</li>
+						<li>
+							<a href="{{ path("product_list")}}">
+								<i class="menu-icon ti-shopping-cart"></i>Products
+							</a>
+						</li>
+						<li>
+							<a href="{{ path("option_list")}}">
+								<i class="menu-icon ti-panel"></i>Options
+							</a>
+						</li>
+						<li>
+							<a href="{{ path("category_index") }}">
+								<i class="menu-icon fa fa-tags"></i>Category</a>
+						</li>
+						<li>
+							<a href="{{ path("category_services") }}">
+								<i class="menu-icon ti-layout-list-thumb-alt"></i>Services</a>
+						</li>
+						<h3 class="menu-title">Goods & Services</h3>
+						<!-- /.menu-title -->
+						<li>
+							<a href="{{ path("carservice_carServices") }}">
+								<i class="menu-icon ti-car"></i>Car Services
+							</a>
+						</li>
+						<li>
+							<a href="{{ path("wellness_wellnessServices") }}">
+								<i class="menu-icon ti-heart"></i>Wellness Services
+							</a>
+						</li>
+						<li>
+							<a href="{{ path("hairsalon_hair_salon") }}">
+								<i class="menu-icon fa fa-scissors"></i>Beauty
+							</a>
+						</li>
+						{% if custom_layout is defined %}
+							{% if custom_layout.id == 14 %}
+								<li>
+									<script type="text/javascript">
+										function AlertIt() {
+var answer = confirm("Vous allez être redirigé vers le site de Klin Business. Si vous utilisez le service pour la première fois, utilisez le code société CAMPUS afin de profiter d'avantages exclusifs !")
+if (answer) 
+window.location = "https://business.klin.lu/login";
+
+
+
+}
+									</script>
+									<a href="javascript:AlertIt();">
+										<i class="menu-icon ti-thought"></i>Klin Laundry
+									</a>
+								</li>
+							{% else %}
+								<li>
+									<script type="text/javascript">
+										function AlertIt() {
+var answer = confirm("Vous allez être redirigé vers le site de Klin Business")
+if (answer) 
+window.location = "https://business.klin.lu/login";
+
+
+
+}
+									</script>
+									<a href="javascript:AlertIt();">
+										<i class="menu-icon ti-thought"></i>Klin Laundry
+									</a>
+								</li>
+							{% endif %}
+						{% endif %}
+
+
+						<li>
+							<a href="{{ path("bioOrders") }}">
+								<i class="menu-icon ti-bag"></i>Le Chat Biotté
+
+							</a>
+						</li>
+
+						<!-- ROLE_WORKER_ADMIN -->
+					{% elseif is_granted('ROLE_WORKER_ADMIN') %}
+						<h3 class="menu-title">Works
+						</h3>
+						<!-- /.menu-title -->
+						<li>
+							<a href="{{ path("parking_listofavailability")}}">
+								<i class="menu-icon ti-check"></i>My Availability</a>
+						</li>
+						<li>
+							<a href="{{ path("product_adminworkerlist")}}">
+								<i class="menu-icon ti-list-ol"></i>My list
+							</a>
+						</li>
+						<li>
+							<a href="{{ path("cleaner_calendar")}}">
+								<i class="menu-icon fa fa-calendar"></i>Planning
+							</a>
+						</li>
+						<li>
+							<a href="{{ path("order_list")}}">
+								<i class="menu-icon ti-credit-card"></i>Orders
+							</a>
+						</li>
+						<li>
+							<a href="{{ path("provider_waitlist")}}">
+								<i class="menu-icon fa fa-bars"></i>Waitlist
+							</a>
+						</li>
+						<li>
+							<a href="{{ path("parking_list") }}">
+								<i class="menu-icon ti-map"></i>Locations
+							</a>
+						</li>
+						<h3 class="menu-title">Products</h3>
+						<!-- /.menu-title -->
+						<li>
+							<a href="{{ path("product_list")}}">
+								<i class="menu-icon ti-shopping-cart"></i>Products
+							</a>
+						</li>
+						<li>
+							<a href="{{ path("option_list")}}">
+								<i class="menu-icon ti-panel"></i>Options
+							</a>
+						</li>
+						<h3 class="menu-title">Goods & Services</h3>
+						<!-- /.menu-title -->
+						<li>
+							<a href="{{ path("carservice_carServices") }}">
+								<i class="menu-icon ti-car"></i>Car Services
+							</a>
+						</li>
+						<li>
+							<a href="{{ path("wellness_wellnessServices") }}">
+								<i class="menu-icon ti-heart"></i>Wellness Services
+							</a>
+						</li>
+						<li>
+							<a href="{{ path("hairsalon_hair_salon") }}">
+								<i class="menu-icon fa fa-scissors"></i>Beauty
+							</a>
+						</li>
+						{% if custom_layout is defined %}
+							{% if custom_layout.id == 14 %}
+								<li>
+									<script type="text/javascript">
+										function AlertIt() {
+var answer = confirm("Vous allez être redirigé vers le site de Klin Business. Si vous utilisez le service pour la première fois, utilisez le code société CAMPUS afin de profiter d'avantages exclusifs !")
+if (answer) 
+window.location = "https://business.klin.lu/login";
+
+
+
+}
+									</script>
+									<a href="javascript:AlertIt();">
+										<i class="menu-icon ti-thought"></i>Klin Laundry
+									</a>
+								</li>
+							{% else %}
+								<li>
+									<script type="text/javascript">
+										function AlertIt() {
+var answer = confirm("Vous allez être redirigé vers le site de Klin Business")
+if (answer) 
+window.location = "https://business.klin.lu/login";
+
+
+
+}
+									</script>
+									<a href="javascript:AlertIt();">
+										<i class="menu-icon ti-thought"></i>Klin Laundry
+									</a>
+								</li>
+							{% endif %}
+						{% endif %}
+
+						<li>
+							<a href="{{ path("bioOrders") }}">
+								<i class="menu-icon ti-bag"></i>Le Chat Biotté
+
+							</a>
+						</li>
+
+
+						<!-- ROLE_WORKER -->
+					{% elseif is_granted('ROLE_WORKER') %}
+						<h3 class="menu-title">Works
+						</h3>
+						<!-- /.menu-title -->
+						<li>
+							<a href="{{ path("cleaner_calendar")}}">
+								<i class="menu-icon fa fa-calendar"></i>Planning
+							</a>
+						</li>
+						<li>
+							<a href="{{ path("order_list")}}">
+								<i class="menu-icon ti-credit-card"></i>Orders
+							</a>
+						</li>
+
+					{% elseif is_granted('ROLE_USER') %}
+						<h3 class="menu-title">Goods & Services</h3>
+						<!-- /.menu-title -->
+						<li>
+							<a href="{{ path("carservice_carServices") }}">
+								<i class="menu-icon ti-car"></i>Car Services
+							</a>
+						</li>
+						<li>
+							<a href="{{ path("wellness_wellnessServices") }}">
+								<i class="menu-icon ti-heart"></i>Wellness Services
+							</a>
+						</li>
+						<li>
+							<a href="{{ path("hairsalon_hair_salon") }}">
+								<i class="menu-icon fa fa-scissors"></i>Beauty
+							</a>
+						</li>
+						{% if custom_layout is defined %}
+							{% if custom_layout.id == 14 %}
+								<li>
+									<script type="text/javascript">
+										function AlertIt() {
+var answer = confirm("Vous allez être redirigé vers le site de Klin Business. Si vous utilisez le service pour la première fois, utilisez le code société CAMPUS afin de profiter d'avantages exclusifs !")
+if (answer) 
+window.location = "https://business.klin.lu/login";
+
+
+
+}
+									</script>
+									<a href="javascript:AlertIt();">
+										<i class="menu-icon ti-thought"></i>Klin Laundry
+									</a>
+								</li>
+							{% else %}
+								<li>
+									<script type="text/javascript">
+										function AlertIt() {
+var answer = confirm("Vous allez être redirigé vers le site de Klin Business")
+if (answer) 
+window.location = "https://business.klin.lu/login";
+
+
+
+}
+									</script>
+									<a href="javascript:AlertIt();">
+										<i class="menu-icon ti-thought"></i>Klin Laundry
+									</a>
+								</li>
+							{% endif %}
+						{% endif %}
+						<li>
+							<a href="{{ path("bioOrders") }}">
+								<i class="menu-icon ti-bag"></i>Le Chat Biotté
+
+							</a>
+						</li>
+
+
+					{% endif %}
+					<!-- COMMON -->
+					<h3 class="menu-title">My Account</h3>
+					<!-- /.menu-title -->
+					<li>
+						<a href="{{ path("user_profile") }}">
+							<i class="menu-icon ti-user"></i>My Profile
+						</a>
+					</li>
+					<li>
+						<a href="{{ path("planned_services_list") }}">
+							<i class="menu-icon ti-calendar"></i>My Bookings
+						</a>
+					</li>
+					<li>
+						<a href="{{ path("car_list") }}">
+							<i class="menu-icon ti-car"></i>My Cars
+						</a>
+					</li>
+					{% if is_granted('ROLE_USER') %}
+						<li>
+							<a href="{{ path("parking_list") }}">
+								<i class="menu-icon ti-map"></i>Locations
+							</a>
+						</li>
+
+
+					{% endif %}
+
+
+				</ul>
+			</div>
+			<!-- /.navbar-collapse -->
+		</nav>
+	</aside>
+	<div id="right-panel" class="right-panel">
+		<header id="header" class="header">
+			<div class="header-menu">
+				<div class="col-sm-7">
+					<a id="menuToggle" class="menutoggle pull-left">
+						<i class="fa fa fa-tasks"></i>
+					</a>
+
+
+					<div class="header-left">
+						{% if custom_layout is defined %}
+							{% if custom_layout.photo is defined %}
+								<a href="{{ path("cms_dashboard") }}">
+									<img src="{{asset('uploads/logo/'~custom_layout.photo ~'')}}" style=" max-height: 50px" alt="{{ custom_layout.name }}"/>
+								</a>
+
+
+							{% endif %}
+						{% endif %}
+					</div>
+
+				</div>
+
+				<div class="col-sm-5">
+					<div class="user-area dropdown float-right show">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+
+							<button type="button" class="rounded-circle btn btn-info ">
+								<i class="fa fa-user"></i>
+							</button>
+
+						</a>
+
+						<div class="user-menu dropdown-menu">
+							<a class="nav-link" href="{{ path("user_profile")}}">
+								<i class="fa fa-user"></i>
+								My Profile</a>
+							<a class="nav-link" href="{{ path("logout") }}">
+								<i class="fa fa-power-off"></i>
+								Logout</a>
+							<a class="nav-link" href="{{ path("support_form") }}">
+								<i class="menu-icon ti-support"></i>
+								Support</a>
+						</div>
+					</div>
+
+
+				</div>
+			</div>
+			<script src="//code.jivosite.com/widget/JkB4LF5oA7" async></script>
+		</header>
+		{% block content %}{% endblock %}
+	</div>
+
+{% endblock %}

@@ -1,0 +1,131 @@
+<?php return [PHP_INT_MAX, static function () {
+
+    return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
+        $o = [
+            clone (($p = &\Symfony\Component\VarExporter\Internal\Registry::$prototypes)['Doctrine\\ORM\\Query\\ParserResult'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Query\\ParserResult')),
+            clone ($p['Doctrine\\ORM\\Query\\Exec\\SingleSelectExecutor'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Query\\Exec\\SingleSelectExecutor')),
+            clone ($p['Doctrine\\ORM\\Query\\ResultSetMapping'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Query\\ResultSetMapping')),
+        ],
+        null,
+        [
+            'Doctrine\\ORM\\Query\\ParserResult' => [
+                '_sqlExecutor' => [
+                    $o[1],
+                ],
+                '_resultSetMapping' => [
+                    $o[2],
+                ],
+                '_parameterMappings' => [
+                    [
+                        'provider' => [
+                            0,
+                        ],
+                        'currentdate' => [
+                            1,
+                        ],
+                    ],
+                ],
+            ],
+            'Doctrine\\ORM\\Query\\Exec\\AbstractSqlExecutor' => [
+                '_sqlStatements' => [
+                    1 => 'SELECT p0_.id AS id_0, p0_.am_pm AS am_pm_1, p0_.date AS date_2, p0_.transaction_token AS transaction_token_3, p0_.message AS message_4, p0_.duration AS duration_5, p0_.planned_start AS planned_start_6, p0_.planned_end AS planned_end_7, p0_.price_paid AS price_paid_8, p0_.facture AS facture_9, p0_.valide AS valide_10, p0_.reduction AS reduction_11, p0_.edited AS edited_12, p0_.captured AS captured_13, p0_.supprime AS supprime_14, p0_.userid_id AS userid_id_15, p0_.parking_id_id AS parking_id_id_16, p0_.user_car_id_id AS user_car_id_id_17, p0_.produit_id AS produit_id_18, p0_.provider_id AS provider_id_19 FROM planned_cleaning p0_ WHERE p0_.provider_id = ? AND p0_.date >= ? AND p0_.valide IS NULL AND p0_.supprime IS NULL AND p0_.facture IS NOT NULL ORDER BY p0_.date DESC',
+                ],
+            ],
+            'stdClass' => [
+                'aliasMap' => [
+                    2 => [
+                        'a' => 'App\\Entity\\PlannedCleaning',
+                    ],
+                ],
+                'fieldMappings' => [
+                    2 => [
+                        'id_0' => 'id',
+                        'am_pm_1' => 'am_pm',
+                        'date_2' => 'date',
+                        'transaction_token_3' => 'transaction_token',
+                        'message_4' => 'message',
+                        'duration_5' => 'duration',
+                        'planned_start_6' => 'planned_start',
+                        'planned_end_7' => 'planned_end',
+                        'price_paid_8' => 'price_paid',
+                        'facture_9' => 'facture',
+                        'valide_10' => 'valide',
+                        'reduction_11' => 'reduction',
+                        'edited_12' => 'edited',
+                        'captured_13' => 'captured',
+                        'supprime_14' => 'supprime',
+                    ],
+                ],
+                'typeMappings' => [
+                    2 => [
+                        'userid_id_15' => 'integer',
+                        'parking_id_id_16' => 'integer',
+                        'user_car_id_id_17' => 'integer',
+                        'produit_id_18' => 'integer',
+                        'provider_id_19' => 'integer',
+                    ],
+                ],
+                'entityMappings' => [
+                    2 => [
+                        'a' => null,
+                    ],
+                ],
+                'metaMappings' => [
+                    2 => [
+                        'userid_id_15' => 'userid_id',
+                        'parking_id_id_16' => 'parking_id_id',
+                        'user_car_id_id_17' => 'user_car_id_id',
+                        'produit_id_18' => 'produit_id',
+                        'provider_id_19' => 'provider_id',
+                    ],
+                ],
+                'columnOwnerMap' => [
+                    2 => [
+                        'id_0' => 'a',
+                        'am_pm_1' => 'a',
+                        'date_2' => 'a',
+                        'transaction_token_3' => 'a',
+                        'message_4' => 'a',
+                        'duration_5' => 'a',
+                        'planned_start_6' => 'a',
+                        'planned_end_7' => 'a',
+                        'price_paid_8' => 'a',
+                        'facture_9' => 'a',
+                        'valide_10' => 'a',
+                        'reduction_11' => 'a',
+                        'edited_12' => 'a',
+                        'captured_13' => 'a',
+                        'supprime_14' => 'a',
+                        'userid_id_15' => 'a',
+                        'parking_id_id_16' => 'a',
+                        'user_car_id_id_17' => 'a',
+                        'produit_id_18' => 'a',
+                        'provider_id_19' => 'a',
+                    ],
+                ],
+                'declaringClasses' => [
+                    2 => [
+                        'id_0' => 'App\\Entity\\PlannedCleaning',
+                        'am_pm_1' => 'App\\Entity\\PlannedCleaning',
+                        'date_2' => 'App\\Entity\\PlannedCleaning',
+                        'transaction_token_3' => 'App\\Entity\\PlannedCleaning',
+                        'message_4' => 'App\\Entity\\PlannedCleaning',
+                        'duration_5' => 'App\\Entity\\PlannedCleaning',
+                        'planned_start_6' => 'App\\Entity\\PlannedCleaning',
+                        'planned_end_7' => 'App\\Entity\\PlannedCleaning',
+                        'price_paid_8' => 'App\\Entity\\PlannedCleaning',
+                        'facture_9' => 'App\\Entity\\PlannedCleaning',
+                        'valide_10' => 'App\\Entity\\PlannedCleaning',
+                        'reduction_11' => 'App\\Entity\\PlannedCleaning',
+                        'edited_12' => 'App\\Entity\\PlannedCleaning',
+                        'captured_13' => 'App\\Entity\\PlannedCleaning',
+                        'supprime_14' => 'App\\Entity\\PlannedCleaning',
+                    ],
+                ],
+            ],
+        ],
+        $o[0],
+        []
+    );
+
+}];

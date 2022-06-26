@@ -1,0 +1,145 @@
+<?php return [PHP_INT_MAX, static function () {
+
+    return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
+        $o = [
+            clone (($p = &\Symfony\Component\VarExporter\Internal\Registry::$prototypes)['Doctrine\\ORM\\Query\\ParserResult'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Query\\ParserResult')),
+            clone ($p['Doctrine\\ORM\\Query\\Exec\\SingleSelectExecutor'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Query\\Exec\\SingleSelectExecutor')),
+            clone ($p['Doctrine\\ORM\\Query\\ResultSetMapping'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Query\\ResultSetMapping')),
+        ],
+        null,
+        [
+            'Doctrine\\ORM\\Query\\ParserResult' => [
+                '_sqlExecutor' => [
+                    $o[1],
+                ],
+                '_resultSetMapping' => [
+                    $o[2],
+                ],
+                '_parameterMappings' => [
+                    [
+                        'currentdate' => [
+                            0,
+                        ],
+                        'code' => [
+                            1,
+                        ],
+                    ],
+                ],
+            ],
+            'Doctrine\\ORM\\Query\\Exec\\AbstractSqlExecutor' => [
+                '_sqlStatements' => [
+                    1 => 'SELECT a0_.id AS id_0, a0_.date AS date_1, a0_.is_deleted AS is_deleted_2, a0_.debut AS debut_3, a0_.fin AS fin_4, a0_.affiche AS affiche_5, p1_.id AS id_6, p1_.name AS name_7, p1_.address AS address_8, p1_.zip_code AS zip_code_9, p1_.city AS city_10, p1_.country AS country_11, p1_.description AS description_12, p1_.created_date AS created_date_13, p1_.updated_date AS updated_date_14, p1_.is_deleted AS is_deleted_15, p1_.longitude AS longitude_16, p1_.latitude AS latitude_17, a0_.parking_id AS parking_id_18, a0_.provider_id AS provider_id_19, p1_.company_id AS company_id_20 FROM availability a0_ LEFT JOIN parkings p1_ ON a0_.parking_id = p1_.id LEFT JOIN moovee_company m2_ ON p1_.company_id = m2_.id WHERE a0_.date > ? AND a0_.is_deleted = 0 AND a0_.affiche = 1 AND (m2_.code_entreprise = ? OR p1_.company_id IS NULL) ORDER BY a0_.date ASC',
+                ],
+            ],
+            'stdClass' => [
+                'aliasMap' => [
+                    2 => [
+                        'a' => 'App\\Entity\\Availability',
+                        'p' => 'App\\Entity\\Parkings',
+                    ],
+                ],
+                'relationMap' => [
+                    2 => [
+                        'p' => 'parking',
+                    ],
+                ],
+                'parentAliasMap' => [
+                    2 => [
+                        'p' => 'a',
+                    ],
+                ],
+                'fieldMappings' => [
+                    2 => [
+                        'id_0' => 'id',
+                        'date_1' => 'date',
+                        'is_deleted_2' => 'is_deleted',
+                        'debut_3' => 'debut',
+                        'fin_4' => 'fin',
+                        'affiche_5' => 'affiche',
+                        'id_6' => 'id',
+                        'name_7' => 'name',
+                        'address_8' => 'address',
+                        'zip_code_9' => 'zip_code',
+                        'city_10' => 'city',
+                        'country_11' => 'country',
+                        'description_12' => 'description',
+                        'created_date_13' => 'created_date',
+                        'updated_date_14' => 'updated_date',
+                        'is_deleted_15' => 'is_deleted',
+                        'longitude_16' => 'longitude',
+                        'latitude_17' => 'latitude',
+                    ],
+                ],
+                'typeMappings' => [
+                    2 => [
+                        'parking_id_18' => 'integer',
+                        'provider_id_19' => 'integer',
+                        'company_id_20' => 'integer',
+                    ],
+                ],
+                'entityMappings' => [
+                    2 => [
+                        'a' => null,
+                    ],
+                ],
+                'metaMappings' => [
+                    2 => [
+                        'parking_id_18' => 'parking_id',
+                        'provider_id_19' => 'provider_id',
+                        'company_id_20' => 'company_id',
+                    ],
+                ],
+                'columnOwnerMap' => [
+                    2 => [
+                        'id_0' => 'a',
+                        'date_1' => 'a',
+                        'is_deleted_2' => 'a',
+                        'debut_3' => 'a',
+                        'fin_4' => 'a',
+                        'affiche_5' => 'a',
+                        'id_6' => 'p',
+                        'name_7' => 'p',
+                        'address_8' => 'p',
+                        'zip_code_9' => 'p',
+                        'city_10' => 'p',
+                        'country_11' => 'p',
+                        'description_12' => 'p',
+                        'created_date_13' => 'p',
+                        'updated_date_14' => 'p',
+                        'is_deleted_15' => 'p',
+                        'longitude_16' => 'p',
+                        'latitude_17' => 'p',
+                        'parking_id_18' => 'a',
+                        'provider_id_19' => 'a',
+                        'company_id_20' => 'p',
+                    ],
+                ],
+                'declaringClasses' => [
+                    2 => [
+                        'id_0' => 'App\\Entity\\Availability',
+                        'date_1' => 'App\\Entity\\Availability',
+                        'is_deleted_2' => 'App\\Entity\\Availability',
+                        'debut_3' => 'App\\Entity\\Availability',
+                        'fin_4' => 'App\\Entity\\Availability',
+                        'affiche_5' => 'App\\Entity\\Availability',
+                        'id_6' => 'App\\Entity\\Parkings',
+                        'name_7' => 'App\\Entity\\Parkings',
+                        'address_8' => 'App\\Entity\\Parkings',
+                        'zip_code_9' => 'App\\Entity\\Parkings',
+                        'city_10' => 'App\\Entity\\Parkings',
+                        'country_11' => 'App\\Entity\\Parkings',
+                        'description_12' => 'App\\Entity\\Parkings',
+                        'created_date_13' => 'App\\Entity\\Parkings',
+                        'updated_date_14' => 'App\\Entity\\Parkings',
+                        'is_deleted_15' => 'App\\Entity\\Parkings',
+                        'longitude_16' => 'App\\Entity\\Parkings',
+                        'latitude_17' => 'App\\Entity\\Parkings',
+                    ],
+                ],
+            ],
+        ],
+        $o[0],
+        []
+    );
+
+}];

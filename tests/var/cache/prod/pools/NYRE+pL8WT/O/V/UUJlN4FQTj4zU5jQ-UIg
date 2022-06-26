@@ -1,0 +1,80 @@
+<?php return [PHP_INT_MAX, static function () {
+
+    return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
+        $o = [
+            clone (($p = &\Symfony\Component\VarExporter\Internal\Registry::$prototypes)['Doctrine\\ORM\\Query\\ParserResult'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Query\\ParserResult')),
+            clone ($p['Doctrine\\ORM\\Query\\Exec\\SingleSelectExecutor'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Query\\Exec\\SingleSelectExecutor')),
+            clone ($p['Doctrine\\ORM\\Query\\ResultSetMapping'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Query\\ResultSetMapping')),
+        ],
+        null,
+        [
+            'Doctrine\\ORM\\Query\\ParserResult' => [
+                '_sqlExecutor' => [
+                    $o[1],
+                ],
+                '_resultSetMapping' => [
+                    $o[2],
+                ],
+            ],
+            'Doctrine\\ORM\\Query\\Exec\\AbstractSqlExecutor' => [
+                '_sqlStatements' => [
+                    1 => 'SELECT p0_.id AS id_0, p0_.name AS name_1, p0_.address AS address_2, p0_.tva AS tva_3, p0_.supprime AS supprime_4, p0_.address2 AS address2_5, p0_.postal_code AS postal_code_6, p0_.city AS city_7, p0_.country AS country_8 FROM provider p0_ WHERE p0_.supprime IS NULL ORDER BY p0_.name ASC',
+                ],
+            ],
+            'stdClass' => [
+                'aliasMap' => [
+                    2 => [
+                        'u' => 'App\\Entity\\Provider',
+                    ],
+                ],
+                'fieldMappings' => [
+                    2 => [
+                        'id_0' => 'id',
+                        'name_1' => 'name',
+                        'address_2' => 'address',
+                        'tva_3' => 'tva',
+                        'supprime_4' => 'supprime',
+                        'address2_5' => 'address2',
+                        'postal_code_6' => 'postal_code',
+                        'city_7' => 'city',
+                        'country_8' => 'country',
+                    ],
+                ],
+                'entityMappings' => [
+                    2 => [
+                        'u' => null,
+                    ],
+                ],
+                'columnOwnerMap' => [
+                    2 => [
+                        'id_0' => 'u',
+                        'name_1' => 'u',
+                        'address_2' => 'u',
+                        'tva_3' => 'u',
+                        'supprime_4' => 'u',
+                        'address2_5' => 'u',
+                        'postal_code_6' => 'u',
+                        'city_7' => 'u',
+                        'country_8' => 'u',
+                    ],
+                ],
+                'declaringClasses' => [
+                    2 => [
+                        'id_0' => 'App\\Entity\\Provider',
+                        'name_1' => 'App\\Entity\\Provider',
+                        'address_2' => 'App\\Entity\\Provider',
+                        'tva_3' => 'App\\Entity\\Provider',
+                        'supprime_4' => 'App\\Entity\\Provider',
+                        'address2_5' => 'App\\Entity\\Provider',
+                        'postal_code_6' => 'App\\Entity\\Provider',
+                        'city_7' => 'App\\Entity\\Provider',
+                        'country_8' => 'App\\Entity\\Provider',
+                    ],
+                ],
+            ],
+        ],
+        $o[0],
+        []
+    );
+
+}];

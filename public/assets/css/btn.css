@@ -1,0 +1,60 @@
+
+input[type="button"]{
+    border-radius: 7px;
+}
+.btn{
+    border-radius: 7px;
+}
+
+.btn-parking
+{
+    background-color: #85A6B8;
+    color: white;
+    border-radius: 7px;
+}
+
+.btn-parking:hover
+{
+    background-color: #4b6e81;
+    color: white;
+    border-radius: 7px;
+
+}
+
+.btn-bookAService
+{
+    background-color: #30C794;
+    color: white;
+    border-radius: 7px;
+}
+
+.btn-bookAService:hover
+{
+    background-color: #23906b;
+    color: white;
+    border-radius: 7px;
+
+}
+
+.btn-service
+{
+    background-color:white;
+    color: white;
+    border-radius: 8px;
+    padding: 0px; 
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+}
+
+.btn-service:hover
+{
+    background-color:white;
+    color: white;
+    border-radius: 8px;
+    padding: 0px; 
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+
+}
+
+.row:before, .row:after {display: none !important;}

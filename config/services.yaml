@@ -1,0 +1,57 @@
+# This file is the entry point to configure your own services.
+# Files in the packages/ subdirectory configure your dependencies.
+
+# Put parameters here that don't need to change on each machine where the app is deployed
+# https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
+parameters:
+    locale: 'en'
+    logo_directory: '%kernel.project_dir%/public/uploads/logo'
+    parking_directory: '%kernel.project_dir%/public/uploads/parking'
+    category_directory: '%kernel.project_dir%/public/uploads/category'
+    product_directory: '%kernel.project_dir%/public/uploads/product'
+    iconmap_directory: '%kernel.project_dir%/public/uploads/iconmap'
+    private_key_stripe: '%env(STRIPE_PRIVATE_KEY)%'
+    public_key_stripe: '%env(STRIPE_PUBLIC_KEY)%'
+    private_test_stripe: '%env(STRIPE_PRIVATE_TEST)%'
+    public_test_stripe: '%env(STRIPE_PUBLIC_TEST)%'
+    app_path: '%env(APP_PATH)%'
+
+services:
+    # default configuration for services in *this* file
+    _defaults:
+        autowire: true      # Automatically injects dependencies in your services.
+        autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+
+    _instanceof:
+        Craue\FormFlowBundle\Form\FormFlow:
+            calls:
+                - method: setDataManager
+                  arguments: [ '@craue.form.flow.data_manager' ]
+                - method: setFormFactory
+                  arguments: [ '@form.factory' ]
+                - method: setRequestStack
+                  arguments: [ '@request_stack' ]
+                - method: setEventDispatcher
+                  arguments: [ '@event_dispatcher' ]
+
+
+
+    myCompany.form.flow.createVehicle:
+        class: App\Form\CreateVehicleFlow
+        autoconfigure: true
+
+
+    # makes classes in src/ available to be used as services
+    # this creates a service per class whose id is the fully-qualified class name
+    App\:
+        resource: '../src/*'
+        exclude: '../src/{DependencyInjection,Entity,Migrations,Tests,Kernel.php}'
+
+    # controllers are imported separately to make sure services can be injected
+    # as action arguments even if you don't extend any base controller class
+    App\Controller\:
+        resource: '../src/Controller'
+        tags: ['controller.service_arguments']
+
+    # add more service definitions when explicit configuration is needed
+    # please note that last definitions always *replace* previous ones

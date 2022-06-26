@@ -1,0 +1,98 @@
+{% extends 'layoutadmin.html.twig' %}
+
+{% block title %}Lucette
+{% endblock %}
+
+
+{% block content %}
+	<div class="breadcrumbs"></div>
+	<div class="content mt-3" style=" font-family: Calibri; ">
+
+		<div class="col-md-12">
+			<div class='header'>
+
+				<h3 style="text-align:center; ">Select your product</h3>
+			</div>
+			<br>
+
+
+			{% for message in app.flashes('danger') %}
+				<div class="sufee-alert alert with-close alert-danger alert-dismissible fade show" role="alert">
+					<span class="badge badge-pill badge-danger">Warning</span>
+					{{ message }}
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+			{% endfor %}
+			<div class="col-sm-12 " style="display: flex;
+    align-items: stretch; margin:0; padding:0;">
+				<div class="card-deck" style="display: flex;
+    align-items: stretch;">
+					{% for product in products %}
+						<div class="polaroid col-md-6 col-lg-4" style="padding-bottom:25px;padding-left:0;padding-right:0;margin:0 1% 0 1%;display: flex; max-width:31%;
+    align-items: stretch;">
+							<form action="{{ path("carservice_option", {'serviceid': serviceid, 'id': product.idproduct.id}) }}" method="post">
+								{% if car != null %}
+									<input type="hidden" name="carid" value="{{ car.id }}">
+								{% endif %}
+								<button type="submit" class="btn btn-service">
+									<img style='border-radius: 8px; width:100%; height:auto; margin-bottom: 25px;' src="{{asset('uploads/product/'~product.idproduct.photo~'')}}"/>
+									<div class="container" style="text-align:center; padding:0;text-overflow: visible; display block;width: 100%;overflow: hidden; white-space: initial;height:200px;">
+										<p>
+											{% set description = product.idproduct.description|striptags('')|replace({"&nbsp;": "" ," /": ". "}) %}
+
+											<small class="text-uppercase"><b>{{product.idproduct.name}}
+												-
+												{{product.price}}
+												€</b>
+												<br>
+											</small>
+											<span id="{{product.id}}">{{ description|raw}}</span>
+											<!-- <input id="{{product.id}}" type="hidden" value='{{ description|raw}}'>-->
+										</p>
+									</div>
+								</button>
+							</form>
+						</div>
+					{% endfor %}
+				</div>
+			</div>
+			<div style="border:0px; background-color:transparent;">
+				<a style="float: right;" href="{{ path("carservice_carservice", {'id': serviceid }) }}" class="btn btn-danger">Back</a>
+			</div>
+		</div>
+	</div>
+	<!--.animated-->
+	<link rel="stylesheet" href="{{asset('assets/css/checkbox.css')}}">
+		<script src="{{asset('vendors/jquery/dist/jquery.min.js')}}"></script>
+	<script src="{{asset('vendors/jquery/dist/jquery.min.js')}}"></script>
+	<script src="{{asset('vendors/jquery/dist/jquery.min.js')}}"></script>
+	<script src="{{asset('vendors/popper.js/dist/umd/popper.min.js')}}"></script>
+	<script src="{{asset('vendors/bootstrap/dist/js/bootstrap.min.js')}}"></script>
+	<script src="{{asset('assets/js/main.js')}}"></script>
+	<script src="{{asset('assets/js/order.js')}}"></script>
+	<script src="{{asset('assets/js/events.js')}}"></script>
+	<script>
+
+		jQuery(document).ready(function ($) {
+
+
+var regex = /<br\s[\/]>\s<br\s[\/]>\s<br\s[\/]>/gi;
+$('#mondiv input').each(function () {
+var x = $("#input").val();
+console.log(x);
+
+var nobr = x.replace(regex, '');
+var reg = /<br\s[\/]>/gi;
+var tes = nobr.replace(reg, '.');
+$("#span").html(decodeURI(tes));
+
+});
+
+
+});
+	</script>
+
+
+{% endblock %}

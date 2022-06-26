@@ -1,0 +1,123 @@
+<?php return [PHP_INT_MAX, static function () {
+
+    return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
+        $o = [
+            (($f = &\Symfony\Component\VarExporter\Internal\Registry::$factories)['Symfony\\Component\\Validator\\Mapping\\ClassMetadata'] ?? \Symfony\Component\VarExporter\Internal\Registry::f('Symfony\\Component\\Validator\\Mapping\\ClassMetadata'))(),
+            ($f['Symfony\\Component\\Validator\\Mapping\\PropertyMetadata'] ?? \Symfony\Component\VarExporter\Internal\Registry::f('Symfony\\Component\\Validator\\Mapping\\PropertyMetadata'))(),
+            clone (($p = &\Symfony\Component\VarExporter\Internal\Registry::$prototypes)['Symfony\\Component\\Validator\\Constraints\\Length'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Symfony\\Component\\Validator\\Constraints\\Length')),
+            $f['Symfony\\Component\\Validator\\Mapping\\PropertyMetadata'](),
+            clone $p['Symfony\\Component\\Validator\\Constraints\\Length'],
+            $f['Symfony\\Component\\Validator\\Mapping\\PropertyMetadata'](),
+            clone $p['Symfony\\Component\\Validator\\Constraints\\Length'],
+        ],
+        null,
+        [
+            'stdClass' => [
+                'name' => [
+                    'App\\Entity\\MooveeUsers',
+                    'plainPassword',
+                    3 => 'oldPassword',
+                    5 => 'role',
+                ],
+                'defaultGroup' => [
+                    'MooveeUsers',
+                ],
+                'members' => [
+                    [
+                        'plainPassword' => [
+                            $o[1],
+                        ],
+                        'oldPassword' => [
+                            $o[3],
+                        ],
+                        'role' => [
+                            $o[5],
+                        ],
+                    ],
+                ],
+                'properties' => [
+                    [
+                        'plainPassword' => $o[1],
+                        'oldPassword' => $o[3],
+                        'role' => $o[5],
+                    ],
+                ],
+                'class' => [
+                    1 => 'App\\Entity\\MooveeUsers',
+                    3 => 'App\\Entity\\MooveeUsers',
+                    5 => 'App\\Entity\\MooveeUsers',
+                ],
+                'property' => [
+                    1 => 'plainPassword',
+                    3 => 'oldPassword',
+                    5 => 'role',
+                ],
+                'constraints' => [
+                    1 => [
+                        $o[2],
+                    ],
+                    3 => [
+                        $o[4],
+                    ],
+                    5 => [
+                        $o[6],
+                    ],
+                ],
+                'constraintsByGroup' => [
+                    1 => [
+                        'Default' => [
+                            $o[2],
+                        ],
+                        'MooveeUsers' => [
+                            $o[2],
+                        ],
+                    ],
+                    3 => [
+                        'Default' => [
+                            $o[4],
+                        ],
+                        'MooveeUsers' => [
+                            $o[4],
+                        ],
+                    ],
+                    5 => [
+                        'Default' => [
+                            $o[6],
+                        ],
+                        'MooveeUsers' => [
+                            $o[6],
+                        ],
+                    ],
+                ],
+                'minMessage' => [
+                    2 => 'Your Password must contain at least 6 charaters',
+                ],
+                'max' => [
+                    2 => 4096,
+                    4 => 4096,
+                    6 => 4096,
+                ],
+                'min' => [
+                    2 => '6',
+                ],
+                'groups' => [
+                    2 => [
+                        'Default',
+                        'MooveeUsers',
+                    ],
+                    4 => [
+                        'Default',
+                        'MooveeUsers',
+                    ],
+                    6 => [
+                        'Default',
+                        'MooveeUsers',
+                    ],
+                ],
+            ],
+        ],
+        $o[0],
+        []
+    );
+
+}];

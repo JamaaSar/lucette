@@ -1,0 +1,66 @@
+{% extends 'layoutadmin.html.twig' %}
+
+{% block title %}Lucette
+{% endblock %}
+
+{% block content %}
+{% if is_granted('ROLE_WORKER_ADMIN') %}
+
+	<div class="breadcrumbs">
+		<div class="col-sm-4">
+			<div class="page-header float-left"></div>
+		</div>
+		<div class="col-sm-8">
+			<div class="page-header float-right">
+				<div class="page-title">
+					<ol class="breadcrumb text-right">
+						<li>
+							<a href="{{ path("cms_dashboard") }}">Dashboard</a>
+						</li>
+						<li>
+							<a href="{{ path("product_list") }}">list cat</a>
+						</li>
+						<li class="active">Add Category Product</li>
+					</ol>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="content mt-3">
+		<div class="animated fadeIn">
+			<div class="row">
+
+				<div class="col-md-12">
+					<div class="card">
+						<div class="card-header">
+							<strong class="card-title">Add Category Product</strong>
+						</div>
+						<div class="card-body">
+							<div class="tile col-lg-4">
+							{% for message in app.flashes('danger') %}
+								<div class="sufee-alert alert with-close alert-danger alert-dismissible fade show" role="alert">
+									<span class="badge badge-pill badge-danger">Warning</span>
+									{{ message }}
+									<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									</button>
+								</div>
+							{% endfor %}
+								{{ form_start(form) }}
+								<div class="form-group">
+									{{ form_errors(form.idcategory) }}
+									{{ form_label(form.idcategory) }}
+									{{ form_widget(form.idcategory, {'attr':{'class': 'form-control'  }}) }}
+								</div>
+								<br>
+								<button type="submit" class="btn btn-info">Add</button>
+								<a href="{{ path("product_detail", {"id": product.id}) }}" class="btn btn-danger">Return</a>
+								</div>
+							{% endif %}
+							{{ form_end(form) }}
+
+<script src="../../../../vendors/jquery/dist/jquery.min.js"></script>
+<script src="../../../../vendors/popper.js/dist/umd/popper.min.js"></script>
+<script src="../../../../vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="../../../../assets/js/main.js"></script>
+{% endblock %}

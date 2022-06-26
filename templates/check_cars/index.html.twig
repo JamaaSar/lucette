@@ -1,0 +1,48 @@
+{% extends 'layoutadmin.html.twig' %}
+
+{% block title %}Lucette{% endblock %}
+
+{% block content %}
+    <div class="breadcrumbs">
+        <div class="col-sm-4">
+            <div class="page-header float-left">
+
+            </div>
+        </div>
+        <div class="col-sm-8">
+            <div class="page-header float-right">
+                <div class="page-title">
+                    <ol class="breadcrumb text-right">
+                        <li><a href="{{ path("cms_dashboard") }}">Dashboard</a></li>
+                        <li class="active">Titre</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="content mt-3">
+        <div class="animated fadeIn">
+            <div class="row">
+
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <iframe frameborder="0" style="height:500px;width:99%;border:none;" src='https://forms.zohopublic.eu/sebastien1/form/CheckVehicles/formperma/y0WIeUbb12xHEPnH8dvIh7FlSgNRmk_cT_fYmdj3nIM'></iframe>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div><!-- .animated -->
+    </div><!-- .content -->
+
+    <script src="{{asset('vendors/jquery/dist/jquery.min.js')}}"></script>
+  	<script src="{{asset('vendors/popper.js/dist/umd/popper.min.js')}}"></script>
+  	<script src="{{asset('vendors/bootstrap/dist/js/bootstrap.min.js')}}"></script>
+  	<script src="{{asset('assets/js/main.js')}}"></script>
+
+
+
+{% endblock %}

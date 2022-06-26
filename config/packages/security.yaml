@@ -1,0 +1,67 @@
+security:
+    encoders:
+        Symfony\Component\Security\Core\User\User: plaintext
+        App\Entity\MooveeUsers:
+            algorithm: bcrypt
+
+    # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
+
+    role_hierarchy:
+        ROLE_COMPANY_ADMIN: ROLE_COMPANY_ADMIN
+        ROLE_WORKER: ROLE_WORKER
+        ROLE_WORKER_ADMIN: ROLE_WORKER
+        ROLE_ADMIN:       [ROLE_COMPANY_ADMIN, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH, ROLE_WORKER_ADMIN]
+        ROLE_SUPER_ADMIN: [ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
+
+    providers:
+        main:
+            entity:
+                class:   App\Entity\MooveeUsers
+                property: username
+    firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+        main_login:
+
+            pattern:   ^/login$
+            anonymous: true
+        
+        main_signin:
+
+            pattern:   ^/sign-up
+            anonymous: true
+        main_fpass:
+
+            pattern:   ^/forgotpassword$
+            anonymous: true
+        main_conf:
+
+            pattern:   ^/confirmation
+            anonymous: true
+        main:
+            pattern:      ^/
+            anonymous:    false
+            provider: main
+            form_login:
+
+                login_path: login
+                check_path: login_check
+            logout:
+                path:       logout
+                target:     login
+
+            # activate different ways to authenticate
+
+            # http_basic: true
+            # https://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate
+
+            # form_login: true
+            # https://symfony.com/doc/current/security/form_login_setup.html
+
+    # Easy way to control access for large sections of your site
+    # Note: Only the *first* access control that matches will be used
+    access_control:
+        # - { path: ^/admin, roles: ROLE_ADMIN }
+        # - { path: ^/profile, roles: ROLE_USER }
+        #- { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }

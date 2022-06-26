@@ -1,0 +1,112 @@
+<style type="text/css">
+    table{width: 100%; border-collapse: collapse}
+    .header td{width: 50%; vertical-align: top}
+    .text-left{text-align: left}
+    .text-right{text-align: right}
+    .text-center{text-align: center}
+    .separator{height: 150px; width: 100%}
+    .content td{border-top: solid 1px #CFD1D2; border-bottom: solid 1px #CFD1D2; padding: 5px;}
+    .content th{ padding: 5px; background-color: #85A6B8; color: #ffffff}
+</style>
+
+<page backtop="20mm" backright="10mm" backbottom="20mm" backleft="10mm">
+    {% set prod = planned_cleaning.pricePaid %}
+
+    {% for option in planned_cleaning.plannedCleaningOptions %}
+        {% set prod = prod - option.pricePaid %}
+
+    {% endfor %}
+
+    <table class="header">
+        <tr >
+            <td class="text-left">
+                <img src="https://lucette.market/app/public/images/lucette.png" style="height: 75px;width: 80px" alt="Lucette"><br><br>
+                <br>5 Rue de l’Industrie
+                <br>
+                <br>L-1811 Luxembourg
+                <br>Luxembourg
+                <br>
+                <br>
+                <br>
+                <br>
+            </td>
+            <td class="text-right">
+                <b style="font-size: 40px; margin-top: 20px">Facture</b>
+                <h5><b>N° {{ planned_cleaning.facture }}</b></h5>
+            </td>
+        </tr>
+
+        <tr >
+            <td class="text-left">
+                Facturer à
+                <p style="color: #4c4c4c">
+                    {{ user.firstName }} {{ user.lastName|upper  }}
+                </p>
+
+
+            </td>
+            <td class="text-right">
+
+                Date de la Facture:
+                <p style="color: #4c4c4c">
+                    {{ planned_cleaning.date|date('d-m-Y') }}
+                </p>
+            </td>
+        </tr>
+
+    </table>
+
+
+    <div class="separator"></div>
+
+    <table class="content">
+        <thead>
+        <tr>
+            <th class=text-left">Nom</th>
+            <th class="text-center">Détails</th>
+            <th class="text-right">Prix</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+
+            <td class="text-left" style="width: 33%">Product: </td>
+            <td class="text-center"  style="width: 33%">{{ planned_cleaning.produit.name }}</td>
+            <td class="text-right" style="width: 33%">{{ prod|number_format(2, '.', ',') }} €</td>
+
+        </tr>
+        {% for option in planned_cleaning.plannedCleaningOptions %}
+            <tr>
+
+                    <td class="text-left">Option: </td>
+                    <td class="text-center">{{ option.optionId.name }}</td>
+                    <td class="text-right">{{ option.pricePaid|number_format(2, '.', ',') }} €</td>
+
+            </tr>
+        {% endfor %}
+            <tr>
+
+                <td  style="border: none "> </td>
+                <td class="text-center">VAT</td>
+                <td class="text-right">{{ (planned_cleaning.pricePaid - (planned_cleaning.pricePaid/1.17)|round(2))|number_format(2, '.', ',') }} €</td>
+
+            </tr>
+
+            <tr style="padding: 5px; background-color: #85A6B8; color: #ffffff">
+
+                <td style="border: none;background-color: #ffffff"> </td>
+                <td class="text-center">Total</td>
+                <td class="text-right">{{ planned_cleaning.pricePaid|number_format(2, '.', ',') }} €</td>
+
+            </tr>
+        </tbody>
+    </table>
+    <div class="text-center" style="color: #6c757d; font-size: 10px;position: absolute;bottom: 0;width: 100%;">
+        LUCETTE MARKET | 5, rue de l'industrie  |  L-1811 Luxembourg
+
+        <br>Autorisation : 10086769/0 | TVA: LU30156432 | RCS : B 222781
+    </div>
+
+
+</page>

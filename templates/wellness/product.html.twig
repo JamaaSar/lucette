@@ -1,0 +1,130 @@
+{% extends 'layoutadmin.html.twig' %}
+
+{% block title %}Lucette
+{% endblock %}
+
+{% block content %}
+	<div class="breadcrumbs">
+		<div class="col-sm-4">
+			<div class="page-header float-left"></div>
+		</div>
+		<div class="col-sm-8">
+			<div class="page-header float-right">
+				<div class="page-title">
+					<ol class="breadcrumb text-right">
+						<li class="active">Dashboard</li>
+					</ol>
+				</div>
+			</div>
+		</div>
+	</div>
+<div class="content mt-3" style=" font-family: Georgia; margin-left:0;margin-right:0;padding-left:0;padding-right:0;">
+
+		<div class="col-md-12">
+			<div class='header'>
+				<h3 style="text-align:center; ">
+					Select your product
+				</h3>
+			</div>
+			<br>
+			{% if app.user.verifyToken is not null %}
+				<div class="sufee-alert alert with-close alert-warning alert-dismissible fade show" role="alert">
+					<span class="badge badge-pill badge-warning">Warning</span>
+					As long as your account has not been verified, you can't book a service!
+					<a href="{{ path('wellness_email') }}">Send another verification email</a>
+				</div>
+			{% endif %}
+			{% for message in app.flashes('success') %}
+				<div class="sufee-alert alert with-close alert-success alert-dismissible fade show" role="alert">
+					<span class="badge badge-pill badge-success">Success</span>
+					{{ message }}
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+			{% endfor %}
+			{% for message in app.flashes('error') %}
+				<div class="sufee-alert alert with-close alert-danger alert-dismissible fade show" role="alert">
+					<span class="badge badge-pill badge-danger">Error</span>
+					{{ message }}
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+			{% endfor %}
+			<div class="col-sm-12 " style="display: flex;
+    align-items: stretch; margin:0; padding:0;">
+				<div class="card-deck" style="display: flex;
+    align-items: stretch;">
+					{% for product in products %}
+						<div class="polaroid col-md-6 col-lg-4" style="padding-bottom:25px;padding-left:0;padding-right:0;margin:0 1% 0 1%;display: flex; max-width:31%;
+    align-items: stretch;">
+							<form action="{{ path("wellness_option", {'serviceid': serviceId, 'id': product.idproduct.id}) }}" method="post">
+								<input type="hidden" name="serviceId" value="{{ serviceId }}">
+								<button type="submit" class="btn btn-service">
+									<img style='border-radius: 8px; width:100%; height:auto; margin-bottom: 25px;' src="{{asset('uploads/product/'~product.idproduct.photo~'')}}"/>
+									<div class="container" style="text-align:center; padding:0;text-overflow: visible; display block;width: 100%;overflow: hidden; white-space: initial;height:200px;">
+
+											<p>
+												{% set description = product.idproduct.description|striptags('')|replace({"&nbsp;": ""," /": ". " })|raw %}
+
+
+												<small class="text-uppercase"> <b>{{product.idproduct.name}}
+													-
+													{{product.price}}
+													€</b>
+												</small><br>
+												<span id="{{product.id}}">{{ description|raw }}</span>
+											</p>
+									</div>
+								</button>
+							</form>
+						</div>
+					{% endfor %}
+				</div>
+				</div>
+				<div style="border:0px; background-color:transparent;">
+				<a style="float: right;" href="{{ path("wellness_wellnessServices") }}" class="btn btn-danger">Back</a>
+
+			</div>
+		</div>
+	</div>
+	<!-- .animated -->
+</div>
+<!-- .content -->
+<link rel="stylesheet"href="{{asset('assets/css/checkbox.css')}}">
+<script src="{{asset('vendors/jquery/dist/jquery.min.js')}}"></script>
+	<script src="{{asset('vendors/popper.js/dist/umd/popper.min.js')}}"></script>
+	<script src="{{asset('vendors/bootstrap/dist/js/bootstrap.min.js')}}"></script>
+	<script src="{{asset('assets/js/main.js')}}"></script>
+	<script src="{{asset('assets/js/order.js')}}"></script>
+	<script src="{{asset('assets/js/events.js')}}"></script>
+<script src="{{asset('/vendors/jszip/dist/jszip.min.js')}}"></script>
+<script src="{{asset('/vendors/pdfmake/build/pdfmake.min.js')}}"></script>
+<script src="{{asset('/vendors/pdfmake/build/vfs_fonts.js')}}"></script>
+<script>
+
+	jQuery(document).ready(function ($) {
+																								var regex = /<br\s[\/]>\s<br\s[\/]>\s<br\s[\/]>/gi;
+																								var x = document.getElementById("test").value;
+
+																								var nobr = x.replace(regex, '');
+
+																								var reg = /<br\s[\/]>/gi;
+																								var tes = nobr.replace(reg, '.');
+
+
+																								$("#descrip").html(decodeURI(tes));
+
+
+
+																								console.log(tes);
+
+
+																								});
+																									</script>
+
+
+
+
+																									{% endblock %}

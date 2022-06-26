@@ -1,0 +1,87 @@
+
+
+.table 
+{
+    border-collapse: separate !important;
+    border-spacing: 0;
+    box-shadow: 0;
+   
+}
+.borderedStyle {
+    border: #ccc solid 0.1px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 20px;
+    border-radius: 10px;
+    -webkit-box-shadow:5px 5px 5px 5px #cfcfcf;
+    -moz-box-shadow: 5px 5px 5px 5px #cfcfcf;
+    box-shadow:5px 5px 5px 5px #cfcfcf;
+    margin-bottom: 18px;
+}
+.bordered {
+    border: #ccc solid 0.1px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 20px;
+    border-radius: 10px;
+    margin-bottom: 18px;
+}
+.bordered tr:hover
+.borderedStyle tr:hover {
+    background:transparent;    
+    -webkit-transition: all 0.1s ease-in-out;
+    -moz-transition: all 0.1s ease-in-out;
+    transition: all 0.1s ease-in-out;
+}
+.bordered td, .bordered th {
+    border-left: 0.1px solid #ccc;
+    border-top: 0.1px thin #ccc;
+    padding: 10px;
+    text-align: left;
+
+}
+.borderedStyle td, .borderedStyle th {
+    border-left: none;
+    border-top: 0.1px thin #ccc;
+    padding: 10px;
+    text-align: left;
+
+}
+
+.bordered td:first-child, .bordered th:first-child ,
+.borderedStyle td:first-child, .borderedStyle th:first-child 
+
+{
+    border-left: none;
+}
+.bordered th:first-child,
+.borderedStyle th:first-child {
+    -moz-border-radius: 10px 0 0 0;
+    -webkit-border-radius: 10px 0 0 0;
+    border-radius: 10px 0 0 0;
+}
+.bordered th:last-child,
+.borderedStyle th:last-child
+{
+    -moz-border-radius: 0 10px 0 0;
+    -webkit-border-radius: 0 20px 0 0;
+    border-radius: 0 10px 0 0;
+}
+.bordered th:only-child,
+.borderedStyle th:only-child{
+    -moz-border-radius: 10px 10px 0 0;
+    -webkit-border-radius: 10px 10px 0 0;
+    border-radius: 10px 10px 0 0;
+}
+.bordered tr:last-child td:first-child ,
+.borderedStyle tr:last-child td:first-child 
+{
+    -moz-border-radius: 0 0 0 10px;
+    -webkit-border-radius: 0 0 0 10px;
+    border-radius: 0 0 0 10px;
+}
+.bordered tr:last-child td:last-child ,
+.borderedStyle tr:last-child td:last-child 
+{
+    -moz-border-radius: 0 0 10px 0;
+    -webkit-border-radius: 0 0 10px 0;
+    border-radius: 0 0 10px 0;
+} 

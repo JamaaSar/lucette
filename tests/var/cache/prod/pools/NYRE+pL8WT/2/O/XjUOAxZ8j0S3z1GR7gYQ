@@ -1,0 +1,170 @@
+<?php return [PHP_INT_MAX, static function () {
+
+    return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
+        $o = [
+            clone (($p = &\Symfony\Component\VarExporter\Internal\Registry::$prototypes)['Doctrine\\ORM\\Mapping\\ClassMetadata'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\ClassMetadata')),
+            clone ($p['Doctrine\\ORM\\Id\\IdentityGenerator'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Id\\IdentityGenerator')),
+        ],
+        null,
+        [
+            'stdClass' => [
+                'name' => [
+                    'App\\Entity\\CreditCard',
+                ],
+                'namespace' => [
+                    'App\\Entity',
+                ],
+                'rootEntityName' => [
+                    'App\\Entity\\CreditCard',
+                ],
+                'customRepositoryClassName' => [
+                    'App\\Repository\\CreditCardRepository',
+                ],
+                'identifier' => [
+                    [
+                        'id',
+                    ],
+                ],
+                'generatorType' => [
+                    4,
+                ],
+                'fieldMappings' => [
+                    [
+                        'id' => [
+                            'fieldName' => 'id',
+                            'type' => 'integer',
+                            'scale' => 0,
+                            'length' => null,
+                            'unique' => false,
+                            'nullable' => false,
+                            'precision' => 0,
+                            'id' => true,
+                            'columnName' => 'id',
+                        ],
+                        'monthValidity' => [
+                            'fieldName' => 'monthValidity',
+                            'type' => 'string',
+                            'scale' => 0,
+                            'length' => 2,
+                            'unique' => false,
+                            'nullable' => false,
+                            'precision' => 0,
+                            'columnName' => 'month_validity',
+                        ],
+                        'yearValidity' => [
+                            'fieldName' => 'yearValidity',
+                            'type' => 'string',
+                            'scale' => 0,
+                            'length' => 4,
+                            'unique' => false,
+                            'nullable' => false,
+                            'precision' => 0,
+                            'columnName' => 'year_validity',
+                        ],
+                        'lastDigits' => [
+                            'fieldName' => 'lastDigits',
+                            'type' => 'string',
+                            'scale' => 0,
+                            'length' => 4,
+                            'unique' => false,
+                            'nullable' => false,
+                            'precision' => 0,
+                            'columnName' => 'last_digits',
+                        ],
+                        'cardToken' => [
+                            'fieldName' => 'cardToken',
+                            'type' => 'string',
+                            'scale' => 0,
+                            'length' => 255,
+                            'unique' => false,
+                            'nullable' => false,
+                            'precision' => 0,
+                            'columnName' => 'card_token',
+                        ],
+                        'cardType' => [
+                            'fieldName' => 'cardType',
+                            'type' => 'string',
+                            'scale' => 0,
+                            'length' => 255,
+                            'unique' => false,
+                            'nullable' => false,
+                            'precision' => 0,
+                            'columnName' => 'card_type',
+                        ],
+                    ],
+                ],
+                'fieldNames' => [
+                    [
+                        'id' => 'id',
+                        'month_validity' => 'monthValidity',
+                        'year_validity' => 'yearValidity',
+                        'last_digits' => 'lastDigits',
+                        'card_token' => 'cardToken',
+                        'card_type' => 'cardType',
+                    ],
+                ],
+                'columnNames' => [
+                    [
+                        'id' => 'id',
+                        'monthValidity' => 'month_validity',
+                        'yearValidity' => 'year_validity',
+                        'lastDigits' => 'last_digits',
+                        'cardToken' => 'card_token',
+                        'cardType' => 'card_type',
+                    ],
+                ],
+                'table' => [
+                    [
+                        'name' => 'credit_card',
+                    ],
+                ],
+                'associationMappings' => [
+                    [
+                        'customerId' => [
+                            'fieldName' => 'customerId',
+                            'joinColumns' => [
+                                [
+                                    'name' => 'customer_id_id',
+                                    'unique' => false,
+                                    'nullable' => false,
+                                    'onDelete' => null,
+                                    'columnDefinition' => null,
+                                    'referencedColumnName' => 'id',
+                                ],
+                            ],
+                            'cascade' => [],
+                            'inversedBy' => 'creditCards',
+                            'targetEntity' => 'App\\Entity\\MooveeUsers',
+                            'fetch' => 2,
+                            'type' => 2,
+                            'mappedBy' => null,
+                            'isOwningSide' => true,
+                            'sourceEntity' => 'App\\Entity\\CreditCard',
+                            'isCascadeRemove' => false,
+                            'isCascadePersist' => false,
+                            'isCascadeRefresh' => false,
+                            'isCascadeMerge' => false,
+                            'isCascadeDetach' => false,
+                            'sourceToTargetKeyColumns' => [
+                                'customer_id_id' => 'id',
+                            ],
+                            'joinColumnFieldNames' => [
+                                'customer_id_id' => 'customer_id_id',
+                            ],
+                            'targetToSourceKeyColumns' => [
+                                'id' => 'customer_id_id',
+                            ],
+                            'orphanRemoval' => false,
+                        ],
+                    ],
+                ],
+                'idGenerator' => [
+                    $o[1],
+                ],
+            ],
+        ],
+        $o[0],
+        []
+    );
+
+}];

@@ -1,0 +1,94 @@
+{% extends 'layoutadmin.html.twig' %}
+
+{% block title %}Lucette
+{% endblock %}
+
+{% block content %}
+	<div class="breadcrumbs">
+		<div class="col-sm-4">
+			<div class="page-header float-left"></div>
+		</div>
+		<div class="col-sm-8">
+			<div class="page-header float-right">
+				<div class="page-title">
+					<ol class="breadcrumb text-right">
+						<li>
+							<a href="{{ path("cms_dashboard") }}">Dashboard</a>
+						</li>
+						<li class="active">list category</li>
+					</ol>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="content mt-3">
+		<div class="animated fadeIn">
+			<div class="row">
+				<div class="col-md-12">
+				  <div class="header">
+                            <h4 style="text-align:center;">Category Manager</h4>
+                        </div>
+						<div class="card-body">
+								{% for message in app.flashes('danger') %}
+									<div class="sufee-alert alert with-close alert-danger alert-dismissible fade show" role="alert">
+										<span class="badge badge-pill badge-danger">Warning</span>
+										{{ message }}
+										<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+											<span aria-hidden="true">&times;</span>
+										</button>
+									</div>
+								{% endfor %}
+								  {% for message in app.flashes('success') %}
+                                <div class="sufee-alert alert with-close alert-success alert-dismissible fade show" role="alert">
+                                    <span class="badge badge-pill badge-success">Success</span>
+                                    {{ message }}
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                            {% endfor %}
+								<table id="bootstrap-data-table-export" class=" table bordered" style="width:60%;">
+									<thead style="background-color: #85A6B8; color: white;">
+										<tr>
+											<th>Photo</ths>
+											<th>Category</th>
+											<th>
+												<a href="{{ path("category_add") }}" class="btn btn-success btn-sm">
+													<i class="fa fa-plus mr-0"></i>&nbsp;Add Category
+												</a>
+											</th>
+										</tr>
+									</thead>
+									<tbody>
+										{% for cat in categories %}
+											<tr>
+											    <td><img src="../../../uploads/category/{{ cat.photo }}" style="width: 200px; height: 200px" /></td>
+												<td>{{ cat.category }}</td>
+											 <td>
+													<a href="{{ path("category_edit", {'id': cat.id}) }}" class="btn btn-info btn-sm">
+														<i class="fa fa-pencil"></i>
+													</a>
+												</td>
+											</tr>
+										{% endfor %}
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- .animated -->
+	</div>
+	<!-- .content -->
+
+
+								<script src="{{asset('vendors/jquery/dist/jquery.min.js')}}"></script>
+								<script src="{{asset('vendors/popper.js/dist/umd/popper.min.js')}}"></script>
+								<script src="{{asset('vendors/bootstrap/dist/js/bootstrap.min.js')}}"></script>
+								<script src="{{asset('assets/js/main.js')}}"></script>
+
+
+
+{% endblock %}

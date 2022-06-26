@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
+<!--[if gt IE 8]><!-->
+<!--<![endif]-->
+
+	<html class="no-js" lang="en"> <head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1"/>
+		{#<meta name="google-site-verification" content="yfBUJDGws0wpyMWopWeB0uoMKxDDX8IFwgTP5UlDI2k"/>#}
+		<title>
+			{% block title %}Lucette
+			{% endblock %}
+		</title>
+		{% block stylesheets %}
+			<link rel="apple-touch-icon" href="../../../../../apple-icon.png">
+			<link rel="shortcut icon" type="image/x-icon" href="{{ asset('images/lucette.png')}}"/>
+
+			<style type="text/css">
+
+				.StripeElement {
+					box-sizing: border-box;
+
+					height: 40px;
+
+					padding: 10px 12px;
+
+					border: 1px solid transparent;
+					border-radius: 4px;
+					background-color: white;
+
+					box-shadow: 0 1px 3px 0 #e6ebf1;
+					-webkit-transition: box-shadow 150ms ease;
+					transition: box-shadow 150ms ease;
+				}
+
+				.StripeElement--focus {
+					box-shadow: 0 1px 3px 0 #cfd7df;
+				}
+
+				.StripeElement--invalid {
+					border-color: #fa755a;
+				}
+
+				.StripeElement--webkit-autofill {
+					background-color: #fefde5 !important;
+				}
+			</style>
+<link rel="stylesheet" href="{{asset('vendors/bootstrap/dist/css/bootstrap.min.css')}}">
+<link rel="stylesheet" href="{{asset('vendors/font-awesome/css/font-awesome.min.css')}}">
+<link rel="stylesheet" href="{{asset('vendors/themify-icons/css/themify-icons.css')}}">
+<link rel="stylesheet" href="{{asset('vendors/flag-icon-css/css/flag-icon.min.css')}}">
+<link rel="stylesheet" href="{{asset('vendors/selectFX/css/cs-skin-elastic.css')}}">
+<link rel="stylesheet" href="{{asset('vendors/jqvmap/dist/jqvmap.min.css')}}">
+
+
+<link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
+<link rel="stylesheet" href="{{asset('assets/css/btn.css')}}">
+
+<link rel="stylesheet" href="{{asset('assets/css/table.css')}}">
+
+
+
+
+			<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
+		{% endblock %}
+	</head>
+	<body>
+		{% block body %}{% endblock %}
+		{% block javascripts %}
+
+
+
+
+<script src="{{asset('vendors/chart.js/dist/Chart.bundle.min.js')}}"></script>
+<script src="{{asset('vendors/jqvmap/dist/jquery.vmap.min.js')}}"></script>
+<script src="{{asset('vendors/jqvmap/examples/js/jquery.vmap.sampledata.js')}}"></script>
+<script src="{{asset('vendors/jqvmap/dist/maps/jquery.vmap.world.js')}}"></script>
+
+		{% endblock %}
+	</body>
+</html>

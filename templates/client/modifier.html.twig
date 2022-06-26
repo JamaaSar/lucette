@@ -1,0 +1,110 @@
+{% extends 'layoutadmin.html.twig' %}
+
+{% block title %}Lucette{% endblock %}
+
+{% block content %}
+    <div class="breadcrumbs">
+        <div class="col-sm-4">
+            <div class="page-header float-left">
+
+            </div>
+        </div>
+        <div class="col-sm-8">
+            <div class="page-header float-right">
+                <div class="page-title">
+                    <ol class="breadcrumb text-right">
+                        <li><a href="{{ path("cms_dashboard") }}">Dashboard</a></li>
+                        <li><a href="{{ path("client_list") }}">Clients</a></li>
+                        <li class="active">Modifier Client</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="content mt-3">
+    <div class="animated fadeIn">
+    <div class="row">
+
+    <div class="col-md-12">
+    <div class="card">
+    <div class="card-header">
+        <strong class="card-title">Modification Client</strong>
+    </div>
+    <div class="card-body">
+    <div class="tile col-lg-4" >
+
+
+
+        {{ form_start(form) }}
+        <div class="form-group">
+            {{ form_errors(form.first_name) }}
+            {{ form_label(form.first_name) }}
+            {{ form_widget(form.first_name, {'attr':{'class': 'form-control', 'value': client.firstName }}) }}
+        </div>
+        <div class="form-group">
+            {{ form_errors(form.last_name) }}
+            {{ form_label(form.last_name) }}
+            {{ form_widget(form.last_name, {'attr':{'class': 'form-control', 'value':  client.lastName }}) }}
+        </div>
+        <div class="form-group">
+            {{ form_errors(form.email) }}
+            {{ form_label(form.email) }}
+            {{ form_widget(form.email, {'attr':{'class': 'form-control', 'value':  client.email }}) }}
+        </div>
+        <div class="form-group">
+            {{ form_errors(form.phoneNumber) }}
+            {{ form_label(form.phoneNumber) }}
+            {{ form_widget(form.phoneNumber, {'attr':{'class': 'form-control', 'value':  client.phoneNumber }}) }}
+        </div>
+        <div class="form-group">
+            {{ form_errors(form.codeCompany) }}
+            {{ form_label(form.codeCompany) }}
+            {{ form_widget(form.codeCompany, {'attr':{'class': 'form-control', 'value':  client.codeCompany }}) }}
+        </div>
+        <div class="form-group">
+            {{ form_errors(form.number_and_street) }}
+            {{ form_label(form.number_and_street) }}
+            {{ form_widget(form.number_and_street, {'attr':{'class': 'form-control', 'value':  client.numberAndStreet }}) }}
+        </div>
+        <div class="form-group">
+            {{ form_errors(form.zip_code) }}
+            {{ form_label(form.zip_code) }}
+            {{ form_widget(form.zip_code, {'attr':{'class': 'form-control', 'value': client.zipCode }}) }}
+        </div>
+        <div class="form-group">
+            {{ form_errors(form.city) }}
+            {{ form_label(form.city) }}
+            {{ form_widget(form.city, {'attr':{'class': 'form-control', 'value': client.city}}) }}
+        </div>
+        <div class="form-group">
+            {{ form_errors(form.provider) }}
+            {{ form_label(form.provider) }}
+            {{ form_widget(form.provider, {'attr':{'class': 'form-control', 'value': client.city}}) }}
+        </div>
+
+        <div class="form-group">
+            {{ form_errors(form.role) }}
+            {{ form_label(form.role) }}
+            {{ form_widget(form.role, {'attr':{'class': 'form-control', }}) }}
+        </div>
+
+
+
+
+        <button type="submit" class="btn btn-info">Modifier</button>
+        <a href="{{ path("client_list") }}"  class="btn btn-danger">Retour</a>
+        <a href="{{ path("client_adminpasschange", {'id': client.id}) }}" class="btn btn-light">
+        Change user's password </a>
+
+
+
+
+
+        {{ form_end(form) }}
+
+    </div>
+    <script src="{{asset('vendors/jquery/dist/jquery.min.js')}}"></script>
+  	<script src="{{asset('vendors/popper.js/dist/umd/popper.min.js')}}"></script>
+  	<script src="{{asset('vendors/bootstrap/dist/js/bootstrap.min.js')}}"></script>
+  	<script src="{{asset('assets/js/main.js')}}"></script>
+{% endblock %}

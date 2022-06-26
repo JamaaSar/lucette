@@ -1,0 +1,95 @@
+<?php return [PHP_INT_MAX, static function () {
+
+    return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
+        $o = [
+            clone (($p = &\Symfony\Component\VarExporter\Internal\Registry::$prototypes)['Doctrine\\ORM\\Query\\ParserResult'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Query\\ParserResult')),
+            clone ($p['Doctrine\\ORM\\Query\\Exec\\SingleSelectExecutor'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Query\\Exec\\SingleSelectExecutor')),
+            clone ($p['Doctrine\\ORM\\Query\\ResultSetMapping'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Query\\ResultSetMapping')),
+        ],
+        null,
+        [
+            'Doctrine\\ORM\\Query\\ParserResult' => [
+                '_sqlExecutor' => [
+                    $o[1],
+                ],
+                '_resultSetMapping' => [
+                    $o[2],
+                ],
+                '_parameterMappings' => [
+                    [
+                        'provider' => [
+                            0,
+                        ],
+                        'currentdate' => [
+                            1,
+                        ],
+                    ],
+                ],
+            ],
+            'Doctrine\\ORM\\Query\\Exec\\AbstractSqlExecutor' => [
+                '_sqlStatements' => [
+                    1 => 'SELECT a0_.id AS id_0, a0_.date AS date_1, a0_.is_deleted AS is_deleted_2, a0_.debut AS debut_3, a0_.fin AS fin_4, a0_.affiche AS affiche_5, a0_.parking_id AS parking_id_6, a0_.provider_id AS provider_id_7 FROM availability a0_ WHERE a0_.provider_id = ? AND a0_.is_deleted = 0 AND a0_.date > ? AND a0_.affiche = 1 ORDER BY a0_.date ASC',
+                ],
+            ],
+            'stdClass' => [
+                'aliasMap' => [
+                    2 => [
+                        'a' => 'App\\Entity\\Availability',
+                    ],
+                ],
+                'fieldMappings' => [
+                    2 => [
+                        'id_0' => 'id',
+                        'date_1' => 'date',
+                        'is_deleted_2' => 'is_deleted',
+                        'debut_3' => 'debut',
+                        'fin_4' => 'fin',
+                        'affiche_5' => 'affiche',
+                    ],
+                ],
+                'typeMappings' => [
+                    2 => [
+                        'parking_id_6' => 'integer',
+                        'provider_id_7' => 'integer',
+                    ],
+                ],
+                'entityMappings' => [
+                    2 => [
+                        'a' => null,
+                    ],
+                ],
+                'metaMappings' => [
+                    2 => [
+                        'parking_id_6' => 'parking_id',
+                        'provider_id_7' => 'provider_id',
+                    ],
+                ],
+                'columnOwnerMap' => [
+                    2 => [
+                        'id_0' => 'a',
+                        'date_1' => 'a',
+                        'is_deleted_2' => 'a',
+                        'debut_3' => 'a',
+                        'fin_4' => 'a',
+                        'affiche_5' => 'a',
+                        'parking_id_6' => 'a',
+                        'provider_id_7' => 'a',
+                    ],
+                ],
+                'declaringClasses' => [
+                    2 => [
+                        'id_0' => 'App\\Entity\\Availability',
+                        'date_1' => 'App\\Entity\\Availability',
+                        'is_deleted_2' => 'App\\Entity\\Availability',
+                        'debut_3' => 'App\\Entity\\Availability',
+                        'fin_4' => 'App\\Entity\\Availability',
+                        'affiche_5' => 'App\\Entity\\Availability',
+                    ],
+                ],
+            ],
+        ],
+        $o[0],
+        []
+    );
+
+}];

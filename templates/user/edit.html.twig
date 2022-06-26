@@ -1,0 +1,89 @@
+{% extends 'layoutadmin.html.twig' %}
+
+{% block title %}Lucette{% endblock %}
+
+{% block content %}
+    <div class="breadcrumbs">
+        <div class="col-sm-4">
+            <div class="page-header float-left">
+
+            </div>
+        </div>
+        <div class="col-sm-8">
+            <div class="page-header float-right">
+                <div class="page-title">
+                    <ol class="breadcrumb text-right">
+                        <li><a href="{{ path("cms_dashboard") }}">Dashboard</a></li>
+                        <li><a href="{{ path("user_profile") }}">Profile</a></li>
+                        <li class="active">Add Card</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="content mt-3">
+    <div class="animated fadeIn">
+    <div class="row">
+
+    <div class="col-md-12">
+    <div class="card">
+    <div class="card-header">
+        <strong class="card-title">Add Card</strong>
+    </div>
+    <div class="card-body">
+    <div class="tile col-lg-4">
+
+
+
+        {{ form_start(form) }}
+        <div class="form-group">
+            {{ form_errors(form.firstName) }}
+            {{ form_label(form.firstName) }}
+            {{ form_widget(form.firstName, {'attr':{'class': 'form-control', 'value':  app.user.firstname }}) }}
+        </div>
+        <div class="form-group">
+            {{ form_errors(form.lastName) }}
+            {{ form_label(form.lastName) }}
+            {{ form_widget(form.lastName, {'attr':{'class': 'form-control', 'value':  app.user.lastname }}) }}
+        </div>
+        <div class="form-group">
+            {{ form_errors(form.email) }}
+            {{ form_label(form.email) }}
+            {{ form_widget(form.email, {'attr':{'class': 'form-control', 'value':  app.user.email }}) }}
+        </div>
+        <div class="form-group">
+            {{ form_errors(form.phoneNumber) }}
+            {{ form_label(form.phoneNumber) }}
+            {{ form_widget(form.phoneNumber, {'attr':{'class': 'form-control', 'value':  app.user.phoneNumber }}) }}
+        </div>
+        <div class="form-group">
+            {{ form_errors(form.number_and_street) }}
+            {{ form_label(form.number_and_street) }}
+            {{ form_widget(form.number_and_street, {'attr':{'class': 'form-control', 'value':  app.user.numberAndStreet }}) }}
+        </div>
+        <div class="form-group">
+            {{ form_errors(form.zip_code) }}
+            {{ form_label(form.zip_code) }}
+            {{ form_widget(form.zip_code, {'attr':{'class': 'form-control', 'value':  app.user.zipCode }}) }}
+        </div>
+        <div class="form-group">
+            {{ form_errors(form.city) }}
+            {{ form_label(form.city) }}
+            {{ form_widget(form.city, {'attr':{'class': 'form-control', 'value':  app.user.city }}) }}
+        </div>
+        <div class="form-group">
+            {{ form_errors(form.code_company) }}
+            {{ form_label(form.code_company) }}
+            {{ form_widget(form.code_company, {'attr':{'class': 'form-control' }}) }}
+        </div>
+
+
+        <button type="submit" class="btn btn-info">Edit</button>
+        <a href="{{ path("user_profile") }}"  class="btn btn-danger">Cancel</a>
+        {{ form_end(form) }}
+    </div>
+    <script src="{{asset('vendors/jquery/dist/jquery.min.js')}}"></script>
+    <script src="{{asset('vendors/popper.js/dist/umd/popper.min.js')}}"></script>
+    <script src="{{asset('vendors/bootstrap/dist/js/bootstrap.min.js')}}"></script>
+    <script src="{{asset('assets/js/main.js')}}"></script>
+{% endblock %}

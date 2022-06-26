@@ -1,0 +1,223 @@
+<?php return [PHP_INT_MAX, static function () {
+
+    return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
+        $o = [
+            clone (($p = &\Symfony\Component\VarExporter\Internal\Registry::$prototypes)['Doctrine\\ORM\\Mapping\\ClassMetadata'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\ClassMetadata')),
+            clone ($p['Doctrine\\ORM\\Id\\IdentityGenerator'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Id\\IdentityGenerator')),
+        ],
+        null,
+        [
+            'stdClass' => [
+                'name' => [
+                    'App\\Entity\\MooveeUserHasCar',
+                ],
+                'namespace' => [
+                    'App\\Entity',
+                ],
+                'rootEntityName' => [
+                    'App\\Entity\\MooveeUserHasCar',
+                ],
+                'customRepositoryClassName' => [
+                    'App\\Repository\\MooveeUserHasCarRepository',
+                ],
+                'identifier' => [
+                    [
+                        'id',
+                    ],
+                ],
+                'generatorType' => [
+                    4,
+                ],
+                'fieldMappings' => [
+                    [
+                        'id' => [
+                            'fieldName' => 'id',
+                            'type' => 'integer',
+                            'scale' => 0,
+                            'length' => null,
+                            'unique' => false,
+                            'nullable' => false,
+                            'precision' => 0,
+                            'id' => true,
+                            'columnName' => 'id',
+                        ],
+                        'user_has_car_nickname_car' => [
+                            'fieldName' => 'user_has_car_nickname_car',
+                            'type' => 'string',
+                            'scale' => 0,
+                            'length' => 255,
+                            'unique' => false,
+                            'nullable' => false,
+                            'precision' => 0,
+                            'columnName' => 'user_has_car_nickname_car',
+                        ],
+                        'created_date' => [
+                            'fieldName' => 'created_date',
+                            'type' => 'datetime',
+                            'scale' => 0,
+                            'length' => null,
+                            'unique' => false,
+                            'nullable' => false,
+                            'precision' => 0,
+                            'columnName' => 'created_date',
+                        ],
+                        'updated_date' => [
+                            'fieldName' => 'updated_date',
+                            'type' => 'datetime',
+                            'scale' => 0,
+                            'length' => null,
+                            'unique' => false,
+                            'nullable' => true,
+                            'precision' => 0,
+                            'columnName' => 'updated_date',
+                        ],
+                        'is_deleted' => [
+                            'fieldName' => 'is_deleted',
+                            'type' => 'boolean',
+                            'scale' => 0,
+                            'length' => null,
+                            'unique' => false,
+                            'nullable' => true,
+                            'precision' => 0,
+                            'columnName' => 'is_deleted',
+                        ],
+                        'space_number' => [
+                            'fieldName' => 'space_number',
+                            'type' => 'string',
+                            'scale' => 0,
+                            'length' => 255,
+                            'unique' => false,
+                            'nullable' => true,
+                            'precision' => 0,
+                            'columnName' => 'space_number',
+                        ],
+                    ],
+                ],
+                'fieldNames' => [
+                    [
+                        'id' => 'id',
+                        'user_has_car_nickname_car' => 'user_has_car_nickname_car',
+                        'created_date' => 'created_date',
+                        'updated_date' => 'updated_date',
+                        'is_deleted' => 'is_deleted',
+                        'space_number' => 'space_number',
+                    ],
+                ],
+                'columnNames' => [
+                    [
+                        'id' => 'id',
+                        'user_has_car_nickname_car' => 'user_has_car_nickname_car',
+                        'created_date' => 'created_date',
+                        'updated_date' => 'updated_date',
+                        'is_deleted' => 'is_deleted',
+                        'space_number' => 'space_number',
+                    ],
+                ],
+                'table' => [
+                    [
+                        'name' => 'moovee_user_has_car',
+                    ],
+                ],
+                'associationMappings' => [
+                    [
+                        'user_has_car_id_user' => [
+                            'fieldName' => 'user_has_car_id_user',
+                            'joinColumns' => [
+                                [
+                                    'name' => 'user_has_car_id_user_id',
+                                    'unique' => false,
+                                    'nullable' => false,
+                                    'onDelete' => null,
+                                    'columnDefinition' => null,
+                                    'referencedColumnName' => 'id',
+                                ],
+                            ],
+                            'cascade' => [],
+                            'inversedBy' => 'mooveeUserHasCars',
+                            'targetEntity' => 'App\\Entity\\MooveeUsers',
+                            'fetch' => 2,
+                            'type' => 2,
+                            'mappedBy' => null,
+                            'isOwningSide' => true,
+                            'sourceEntity' => 'App\\Entity\\MooveeUserHasCar',
+                            'isCascadeRemove' => false,
+                            'isCascadePersist' => false,
+                            'isCascadeRefresh' => false,
+                            'isCascadeMerge' => false,
+                            'isCascadeDetach' => false,
+                            'sourceToTargetKeyColumns' => [
+                                'user_has_car_id_user_id' => 'id',
+                            ],
+                            'joinColumnFieldNames' => [
+                                'user_has_car_id_user_id' => 'user_has_car_id_user_id',
+                            ],
+                            'targetToSourceKeyColumns' => [
+                                'id' => 'user_has_car_id_user_id',
+                            ],
+                            'orphanRemoval' => false,
+                        ],
+                        'user_has_car_id_car' => [
+                            'fieldName' => 'user_has_car_id_car',
+                            'joinColumns' => [
+                                [
+                                    'name' => 'user_has_car_id_car_id',
+                                    'unique' => false,
+                                    'nullable' => false,
+                                    'onDelete' => null,
+                                    'columnDefinition' => null,
+                                    'referencedColumnName' => 'id',
+                                ],
+                            ],
+                            'cascade' => [],
+                            'inversedBy' => 'mooveeUserHasCars',
+                            'targetEntity' => 'App\\Entity\\MooveeCar',
+                            'fetch' => 2,
+                            'type' => 2,
+                            'mappedBy' => null,
+                            'isOwningSide' => true,
+                            'sourceEntity' => 'App\\Entity\\MooveeUserHasCar',
+                            'isCascadeRemove' => false,
+                            'isCascadePersist' => false,
+                            'isCascadeRefresh' => false,
+                            'isCascadeMerge' => false,
+                            'isCascadeDetach' => false,
+                            'sourceToTargetKeyColumns' => [
+                                'user_has_car_id_car_id' => 'id',
+                            ],
+                            'joinColumnFieldNames' => [
+                                'user_has_car_id_car_id' => 'user_has_car_id_car_id',
+                            ],
+                            'targetToSourceKeyColumns' => [
+                                'id' => 'user_has_car_id_car_id',
+                            ],
+                            'orphanRemoval' => false,
+                        ],
+                        'plannedCleanings' => [
+                            'fieldName' => 'plannedCleanings',
+                            'mappedBy' => 'user_car_id',
+                            'targetEntity' => 'App\\Entity\\PlannedCleaning',
+                            'cascade' => [],
+                            'orphanRemoval' => false,
+                            'fetch' => 2,
+                            'type' => 4,
+                            'inversedBy' => null,
+                            'isOwningSide' => false,
+                            'sourceEntity' => 'App\\Entity\\MooveeUserHasCar',
+                            'isCascadeRemove' => false,
+                            'isCascadePersist' => false,
+                            'isCascadeRefresh' => false,
+                            'isCascadeMerge' => false,
+                            'isCascadeDetach' => false,
+                        ],
+                    ],
+                ],
+                'idGenerator' => [
+                    $o[1],
+                ],
+            ],
+        ],
+        $o[0],
+        []
+    );
+
+}];

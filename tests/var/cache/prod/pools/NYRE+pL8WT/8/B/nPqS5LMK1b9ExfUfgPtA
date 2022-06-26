@@ -1,0 +1,137 @@
+<?php return [PHP_INT_MAX, static function () {
+
+    return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
+        $o = [
+            clone (($p = &\Symfony\Component\VarExporter\Internal\Registry::$prototypes)['Doctrine\\ORM\\Query\\ParserResult'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Query\\ParserResult')),
+            clone ($p['Doctrine\\ORM\\Query\\Exec\\SingleSelectExecutor'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Query\\Exec\\SingleSelectExecutor')),
+            clone ($p['Doctrine\\ORM\\Query\\ResultSetMapping'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Query\\ResultSetMapping')),
+        ],
+        null,
+        [
+            'Doctrine\\ORM\\Query\\ParserResult' => [
+                '_sqlExecutor' => [
+                    $o[1],
+                ],
+                '_resultSetMapping' => [
+                    $o[2],
+                ],
+                '_parameterMappings' => [
+                    [
+                        'Provider' => [
+                            0,
+                        ],
+                        'roles' => [
+                            1,
+                        ],
+                    ],
+                ],
+            ],
+            'Doctrine\\ORM\\Query\\Exec\\AbstractSqlExecutor' => [
+                '_sqlStatements' => [
+                    1 => 'SELECT m0_.id AS id_0, m0_.first_name AS first_name_1, m0_.last_name AS last_name_2, m0_.email AS email_3, m0_.phone_number AS phone_number_4, m0_.code_company AS code_company_5, m0_.number_and_street AS number_and_street_6, m0_.zip_code AS zip_code_7, m0_.city AS city_8, m0_.customer_token AS customer_token_9, m0_.pw_reset_token AS pw_reset_token_10, m0_.created_date AS created_date_11, m0_.updated_date AS updated_date_12, m0_.username AS username_13, m0_.password AS password_14, m0_.salt AS salt_15, m0_.roles AS roles_16, m0_.is_deleted AS is_deleted_17, m0_.verify_token AS verify_token_18, m0_.google_token AS google_token_19, m0_.subscribe AS subscribe_20, m0_.provider_id AS provider_id_21 FROM moovee_users m0_ WHERE m0_.provider_id = ? AND m0_.roles LIKE ? AND m0_.is_deleted IS NULL',
+                ],
+            ],
+            'stdClass' => [
+                'aliasMap' => [
+                    2 => [
+                        'u' => 'App\\Entity\\MooveeUsers',
+                    ],
+                ],
+                'fieldMappings' => [
+                    2 => [
+                        'id_0' => 'id',
+                        'first_name_1' => 'first_name',
+                        'last_name_2' => 'last_name',
+                        'email_3' => 'email',
+                        'phone_number_4' => 'phone_number',
+                        'code_company_5' => 'code_company',
+                        'number_and_street_6' => 'number_and_street',
+                        'zip_code_7' => 'zip_code',
+                        'city_8' => 'city',
+                        'customer_token_9' => 'customerToken',
+                        'pw_reset_token_10' => 'pwResetToken',
+                        'created_date_11' => 'created_date',
+                        'updated_date_12' => 'updated_date',
+                        'username_13' => 'username',
+                        'password_14' => 'password',
+                        'salt_15' => 'salt',
+                        'roles_16' => 'roles',
+                        'is_deleted_17' => 'is_deleted',
+                        'verify_token_18' => 'verifyToken',
+                        'google_token_19' => 'googleToken',
+                        'subscribe_20' => 'subscribe',
+                    ],
+                ],
+                'typeMappings' => [
+                    2 => [
+                        'provider_id_21' => 'integer',
+                    ],
+                ],
+                'entityMappings' => [
+                    2 => [
+                        'u' => null,
+                    ],
+                ],
+                'metaMappings' => [
+                    2 => [
+                        'provider_id_21' => 'provider_id',
+                    ],
+                ],
+                'columnOwnerMap' => [
+                    2 => [
+                        'id_0' => 'u',
+                        'first_name_1' => 'u',
+                        'last_name_2' => 'u',
+                        'email_3' => 'u',
+                        'phone_number_4' => 'u',
+                        'code_company_5' => 'u',
+                        'number_and_street_6' => 'u',
+                        'zip_code_7' => 'u',
+                        'city_8' => 'u',
+                        'customer_token_9' => 'u',
+                        'pw_reset_token_10' => 'u',
+                        'created_date_11' => 'u',
+                        'updated_date_12' => 'u',
+                        'username_13' => 'u',
+                        'password_14' => 'u',
+                        'salt_15' => 'u',
+                        'roles_16' => 'u',
+                        'is_deleted_17' => 'u',
+                        'verify_token_18' => 'u',
+                        'google_token_19' => 'u',
+                        'subscribe_20' => 'u',
+                        'provider_id_21' => 'u',
+                    ],
+                ],
+                'declaringClasses' => [
+                    2 => [
+                        'id_0' => 'App\\Entity\\MooveeUsers',
+                        'first_name_1' => 'App\\Entity\\MooveeUsers',
+                        'last_name_2' => 'App\\Entity\\MooveeUsers',
+                        'email_3' => 'App\\Entity\\MooveeUsers',
+                        'phone_number_4' => 'App\\Entity\\MooveeUsers',
+                        'code_company_5' => 'App\\Entity\\MooveeUsers',
+                        'number_and_street_6' => 'App\\Entity\\MooveeUsers',
+                        'zip_code_7' => 'App\\Entity\\MooveeUsers',
+                        'city_8' => 'App\\Entity\\MooveeUsers',
+                        'customer_token_9' => 'App\\Entity\\MooveeUsers',
+                        'pw_reset_token_10' => 'App\\Entity\\MooveeUsers',
+                        'created_date_11' => 'App\\Entity\\MooveeUsers',
+                        'updated_date_12' => 'App\\Entity\\MooveeUsers',
+                        'username_13' => 'App\\Entity\\MooveeUsers',
+                        'password_14' => 'App\\Entity\\MooveeUsers',
+                        'salt_15' => 'App\\Entity\\MooveeUsers',
+                        'roles_16' => 'App\\Entity\\MooveeUsers',
+                        'is_deleted_17' => 'App\\Entity\\MooveeUsers',
+                        'verify_token_18' => 'App\\Entity\\MooveeUsers',
+                        'google_token_19' => 'App\\Entity\\MooveeUsers',
+                        'subscribe_20' => 'App\\Entity\\MooveeUsers',
+                    ],
+                ],
+            ],
+        ],
+        $o[0],
+        []
+    );
+
+}];

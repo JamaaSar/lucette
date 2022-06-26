@@ -1,0 +1,70 @@
+{% extends 'layoutadmin.html.twig' %}
+
+{% block title %}Lucette{% endblock %}
+
+{% block content %}
+    <div class="breadcrumbs">
+        <div class="col-sm-4">
+            <div class="page-header float-left">
+
+            </div>
+        </div>
+        <div class="col-sm-8">
+            <div class="page-header float-right">
+                <div class="page-title">
+                    <ol class="breadcrumb text-right">
+                        <li><a href="{{ path("cms_dashboard") }}">Dashboard</a></li>
+                        <li><a href="{{ path("parking_list") }}">Parking</a></li>
+                        <li><a href="{{ path("parking_detail", {'id': id}) }}">Details</a></li>
+                        <li class="active">Add Photo</li>
+
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="content mt-3">
+    <div class="animated fadeIn">
+    <div class="row">
+
+    <div class="col-md-12">
+    <div class="card">
+    <div class="card-header">
+        <strong class="card-title">Add Photo</strong>
+    </div>
+    <div class="card-body">
+    <div class="tile col-lg-4" >
+        {% for message in app.flashes('danger') %}
+            <div class="sufee-alert alert with-close alert-danger alert-dismissible fade show" role="alert">
+                <span class="badge badge-pill badge-danger">Warning</span>
+                {{ message }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        {% endfor %}
+
+
+        {{ form_start(form) }}
+
+
+        <div class="form-group">
+            {{ form_errors(form.image) }}
+            {{ form_label(form.image) }}
+            {{ form_widget(form.image) }}
+        </div>
+
+
+
+
+        <button type="submit" class="btn btn-info">Add</button>
+        <a href="{{ path("parking_detail", {'id': id}) }}"  class="btn btn-danger">Return</a>
+
+        {{ form_end(form) }}
+
+    </div>
+    <script src="{{asset('vendors/jquery/dist/jquery.min.js')}}"></script>
+    <script src="{{asset('vendors/popper.js/dist/umd/popper.min.js')}}"></script>
+    <script src="{{asset('vendors/bootstrap/dist/js/bootstrap.min.js')}}"></script>
+    <script src="{{asset('assets/js/main.js')}}"></script>
+{% endblock %}

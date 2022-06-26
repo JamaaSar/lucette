@@ -1,0 +1,84 @@
+{% extends 'layoutadmin.html.twig' %}
+
+{% block title %}Lucette
+{% endblock %}
+
+{% block content %}
+	<div class="breadcrumbs">
+		<div class="col-sm-4">
+			<div class="page-header float-left">
+				{#{% if is_granted('ROLE_ADMIN') %}
+					<ol class="breadcrumb text-left">
+						<button type="button" class="btn btn-xs social google-plus" style="margin-bottom: 4px">
+							<i class="fa fa-google-plus-square"></i>
+							<a href="{{ path("cms_apiCalendar") }}" style="color:white;">
+								Connect your account to google calendar
+							</a>
+						</button>
+					</ol>
+				{% endif %}#}
+
+			</div>
+		</div>
+		<div class="col-sm-8">
+			<div class="page-header float-right">
+				<div class="page-title">
+					<ol class="breadcrumb text-right">
+						<li class="active">Dashboard</li>
+					</ol>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="content mt-3" style="font-family: Georgia, serif;">
+		<div class="animated fadeIn">
+			<div class="row"></div>
+			<h5>
+				Please choose your calendar
+			</h5>
+
+			<div class="card" style="border:0px; background-color:transparent;">
+				<div class="card-body">
+					<form method="POST">
+						{% for key, calendar in calendarArray %}
+							<input type="radio" name="calendar" value="{{ calendar.calendarId }}" id="calendar">&nbsp;
+							<label for="{{ calendar.calendarId }}">
+								{{calendar.name}}
+
+							</label>
+							<br>
+
+
+						{% endfor %}
+						<button type="submit" class="btn btn-info"> Done
+							</button>
+					</form>
+					<br>
+				</div>
+
+
+			</div>
+		</div>
+
+		<!--.animated-->
+	</div><!--.content--><script src="../../vendors/chart.js/dist/Chart.min.js"></script>
+	<script src="{{asset('vendors/jquery/dist/jquery.min.js')}}"></script>
+	<script src="{{asset('vendors/popper.js/dist/umd/popper.min.js')}}"></script>
+	<script src="{{asset('vendors/bootstrap/dist/js/bootstrap.min.js')}}"></script>
+	<script src="{{asset('assets/js/main.js')}}"></script>
+	<script src="../vendors/datatables.net/js/jquery.dataTables.min.js"></script>
+	<script src="../vendors/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
+	<script src="../vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+	<script src="../vendors/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
+	<script src="../vendors/jszip/dist/jszip.min.js"></script>
+	<script src="../vendors/pdfmake/build/pdfmake.min.js"></script>
+	<script src="../vendors/pdfmake/build/vfs_fonts.js"></script>
+	<script src="../vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>
+	<script src="../vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
+	<script src="../vendors/datatables.net-buttons/js/buttons.colVis.min.js"></script>
+	<script src="../assets/js/init-scripts/data-table/datatables-init.js"></script>
+	<linkrel="stylesheet"href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
+		<scriptsrc="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+		<scriptsrc="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+		<scriptsrc="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
+	{% endblock %}

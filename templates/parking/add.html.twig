@@ -1,0 +1,109 @@
+{% extends 'layoutadmin.html.twig' %}
+
+{% block title %}Lucette{% endblock %}
+
+{% block content %}
+    <div class="breadcrumbs">
+        <div class="col-sm-4">
+            <div class="page-header float-left">
+
+            </div>
+        </div>
+        <div class="col-sm-8">
+            <div class="page-header float-right">
+                <div class="page-title">
+                    <ol class="breadcrumb text-right">
+                        <li><a href="{{ path("cms_dashboard") }}">Dashboard</a></li>
+                        <li><a href="{{ path("parking_list") }}">Parking</a></li>
+                        <li class="active">Add Parking</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="content mt-3">
+    <div class="animated fadeIn">
+    <div class="row">
+
+    <div class="col-md-12">
+    <div class="card">
+    <div class="card-header">
+        <strong class="card-title">Add Parking</strong>
+    </div>
+    <div class="card-body">
+    <div class="tile col-lg-4" >
+        {% for message in app.flashes('danger') %}
+            <div class="sufee-alert alert with-close alert-danger alert-dismissible fade show" role="alert">
+                <span class="badge badge-pill badge-danger">Warning</span>
+                {{ message }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        {% endfor %}
+
+
+        {{ form_start(form) }}
+        <div class="form-group">
+            {{ form_errors(form.name) }}
+            {{ form_label(form.name) }}
+            {{ form_widget(form.name, {'attr':{'class': 'form-control'  }}) }}
+        </div>
+        <div class="form-group">
+            {{ form_errors(form.company) }}
+            {{ form_label(form.company) }}
+            {{ form_widget(form.company, {'attr':{'class': 'form-control'  }}) }}
+        </div>
+        <div class="form-group">
+            {{ form_errors(form.address) }}
+            {{ form_label(form.address) }}
+            {{ form_widget(form.address, {'attr':{'class': 'form-control'  }}) }}
+        </div>
+        <div class="form-group">
+            {{ form_errors(form.zipCode) }}
+            {{ form_label(form.zipCode) }}
+            {{ form_widget(form.zipCode, {'attr':{'class': 'form-control'  }}) }}
+        </div>
+        <div class="form-group">
+            {{ form_errors(form.city) }}
+            {{ form_label(form.city) }}
+            {{ form_widget(form.city, {'attr':{'class': 'form-control'  }}) }}
+        </div>
+        <div class="form-group">
+            {{ form_errors(form.country) }}
+            {{ form_label(form.country) }}
+            {{ form_widget(form.country, {'attr':{'class': 'form-control'  }}) }}
+        </div>
+
+        <div class="form-group">
+            {{ form_errors(form.description) }}
+            {{ form_label(form.description) }}
+            {{ form_widget(form.description, {'attr':{'class': 'form-control'  }}) }}
+        </div>
+
+        <div class="form-group">
+            {{ form_errors(form.latitude) }}
+            {{ form_label(form.latitude) }}
+            {{ form_widget(form.latitude, {'attr':{'class': 'form-control'  }}) }}
+        </div>
+        <div class="form-group">
+            {{ form_errors(form.longitude) }}
+            {{ form_label(form.longitude) }}
+            {{ form_widget(form.longitude, {'attr':{'class': 'form-control'  }}) }}
+        </div>
+
+
+
+
+
+        <button type="submit" class="btn btn-info">Add</button>
+        <a href="{{ path("parking_list") }}"  class="btn btn-danger">Return</a>
+
+        {{ form_end(form) }}
+
+    </div>
+    <script src="{{asset('vendors/jquery/dist/jquery.min.js')}}"></script>
+  	<script src="{{asset('vendors/popper.js/dist/umd/popper.min.js')}}"></script>
+  	<script src="{{asset('vendors/bootstrap/dist/js/bootstrap.min.js')}}"></script>
+  	<script src="{{asset('assets/js/main.js')}}"></script>
+{% endblock %}

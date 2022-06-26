@@ -1,0 +1,80 @@
+{% extends 'layoutadmin.html.twig' %}
+
+{% block title %}Lucette{% endblock %}
+
+{% block content %}
+    <div class="breadcrumbs">
+        <div class="col-sm-4">
+            <div class="page-header float-left">
+                <img src="{{asset('images/logo_chat_biotte.jpg')}}" height=70 alt="Chat Biotte">
+            </div>
+        </div>
+        <div class="col-sm-8">
+            <div class="page-header float-right">
+                <div class="page-title">
+                    <ol class="breadcrumb text-right">
+                        <li><a href="{{ path("cms_dashboard") }}">Dashboard</a></li>
+                        <li class="active">Bio Orders</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="content mt-3">
+        <div class="animated fadeIn">
+            <div class="row">
+
+                <div class="col-md-9">
+                    <div class="card">
+                        <div class="card-body">
+                            <iframe frameborder="0" style="height:900px;width:99%;border:none;sandbox" src='https://forms.zohopublic.eu/sebastien1/form/FruitsOrder/formperma/6384HrDAHxzuAF8kYDcICf3EF16jmkTvxc_DixLk4nE?customerEmail={{ app.user.email }}&firstName={{ app.user.firstname }}&lastName={{ app.user.lastname }}&phoneNumber={{ app.user.phoneNumber }}'></iframe>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <table  class="table table-striped table-basic">
+                                <thead>
+                                <tr>
+                                    <th align="center">
+                                        <p align="center">
+                                            <img src="{{asset('images/ChatBiotte1.jpg')}}" alt="Fruits"></a>
+                                        </p>
+                                        <p align="center">Box Vegetarian</p>
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <th align="center">
+                                        <p align="center">
+                                            <img src="{{asset('images/ChatBiotte2.jpg')}}" alt="Fruits"></a>
+                                        </p>
+                                        <p align="center">Box Energy</p>
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <th align="center">
+                                        <p align="center">
+                                            <img src="{{asset('images/ChatBiotte3.jpg')}}" alt="Fruits"></a>
+                                        </p>
+                                        <p align="center">Box Balanced</p>
+                                    </th>
+                                </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!-- .animated -->
+    </div><!-- .content -->
+
+    <script src="{{asset('vendors/jquery/dist/jquery.min.js')}}"></script>
+    <script src="{{asset('vendors/popper.js/dist/umd/popper.min.js')}}"></script>
+    <script src="{{asset('vendors/bootstrap/dist/js/bootstrap.min.js')}}"></script>
+    <script src="{{asset('assets/js/main.js')}}"></script>
+
+
+
+{% endblock %}

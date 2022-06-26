@@ -1,0 +1,127 @@
+<?php return [PHP_INT_MAX, static function () {
+
+    return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
+        $o = [
+            clone (($p = &\Symfony\Component\VarExporter\Internal\Registry::$prototypes)['Doctrine\\ORM\\Query\\ParserResult'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Query\\ParserResult')),
+            clone ($p['Doctrine\\ORM\\Query\\Exec\\SingleSelectExecutor'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Query\\Exec\\SingleSelectExecutor')),
+            clone ($p['Doctrine\\ORM\\Query\\ResultSetMapping'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Query\\ResultSetMapping')),
+        ],
+        null,
+        [
+            'Doctrine\\ORM\\Query\\ParserResult' => [
+                '_sqlExecutor' => [
+                    $o[1],
+                ],
+                '_resultSetMapping' => [
+                    $o[2],
+                ],
+                '_parameterMappings' => [
+                    [
+                        'category' => [
+                            0,
+                        ],
+                        'provider' => [
+                            1,
+                        ],
+                    ],
+                ],
+            ],
+            'Doctrine\\ORM\\Query\\Exec\\AbstractSqlExecutor' => [
+                '_sqlStatements' => [
+                    1 => 'SELECT c0_.id AS id_0, c0_.price AS price_1, c0_.time AS time_2, c0_.category AS category_3, p1_.id AS id_4, p1_.name AS name_5, p1_.description AS description_6, p1_.supprime AS supprime_7, p1_.commission AS commission_8, p1_.direct_buy AS direct_buy_9, p1_.auto_valide AS auto_valide_10, p1_.photo AS photo_11, c0_.id_product_id AS id_product_id_12, p1_.id_provider_id AS id_provider_id_13, p1_.category_service_id AS category_service_id_14 FROM category_product c0_ LEFT JOIN products p1_ ON c0_.id_product_id = p1_.id WHERE p1_.category_service_id = ? AND p1_.supprime IS NULL AND p1_.id_provider_id = ?',
+                ],
+            ],
+            'stdClass' => [
+                'aliasMap' => [
+                    2 => [
+                        'a' => 'App\\Entity\\CategoryProduct',
+                        'p' => 'App\\Entity\\Products',
+                    ],
+                ],
+                'relationMap' => [
+                    2 => [
+                        'p' => 'id_product',
+                    ],
+                ],
+                'parentAliasMap' => [
+                    2 => [
+                        'p' => 'a',
+                    ],
+                ],
+                'fieldMappings' => [
+                    2 => [
+                        'id_0' => 'id',
+                        'price_1' => 'price',
+                        'time_2' => 'time',
+                        'category_3' => 'category',
+                        'id_4' => 'id',
+                        'name_5' => 'name',
+                        'description_6' => 'description',
+                        'supprime_7' => 'supprime',
+                        'commission_8' => 'commission',
+                        'direct_buy_9' => 'directBuy',
+                        'auto_valide_10' => 'autoValide',
+                        'photo_11' => 'photo',
+                    ],
+                ],
+                'typeMappings' => [
+                    2 => [
+                        'id_product_id_12' => 'integer',
+                        'id_provider_id_13' => 'integer',
+                        'category_service_id_14' => 'integer',
+                    ],
+                ],
+                'entityMappings' => [
+                    2 => [
+                        'a' => null,
+                    ],
+                ],
+                'metaMappings' => [
+                    2 => [
+                        'id_product_id_12' => 'id_product_id',
+                        'id_provider_id_13' => 'id_provider_id',
+                        'category_service_id_14' => 'category_service_id',
+                    ],
+                ],
+                'columnOwnerMap' => [
+                    2 => [
+                        'id_0' => 'a',
+                        'price_1' => 'a',
+                        'time_2' => 'a',
+                        'category_3' => 'a',
+                        'id_4' => 'p',
+                        'name_5' => 'p',
+                        'description_6' => 'p',
+                        'supprime_7' => 'p',
+                        'commission_8' => 'p',
+                        'direct_buy_9' => 'p',
+                        'auto_valide_10' => 'p',
+                        'photo_11' => 'p',
+                        'id_product_id_12' => 'a',
+                        'id_provider_id_13' => 'p',
+                        'category_service_id_14' => 'p',
+                    ],
+                ],
+                'declaringClasses' => [
+                    2 => [
+                        'id_0' => 'App\\Entity\\CategoryProduct',
+                        'price_1' => 'App\\Entity\\CategoryProduct',
+                        'time_2' => 'App\\Entity\\CategoryProduct',
+                        'category_3' => 'App\\Entity\\CategoryProduct',
+                        'id_4' => 'App\\Entity\\Products',
+                        'name_5' => 'App\\Entity\\Products',
+                        'description_6' => 'App\\Entity\\Products',
+                        'supprime_7' => 'App\\Entity\\Products',
+                        'commission_8' => 'App\\Entity\\Products',
+                        'direct_buy_9' => 'App\\Entity\\Products',
+                        'auto_valide_10' => 'App\\Entity\\Products',
+                        'photo_11' => 'App\\Entity\\Products',
+                    ],
+                ],
+            ],
+        ],
+        $o[0],
+        []
+    );
+
+}];
